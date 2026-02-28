@@ -1,6 +1,8 @@
 package ast;
 
 import java.io.PrintWriter;
+import java.io.File;
+import java.net.URL;
 
 public class AstGraphviz
 {
@@ -33,9 +35,24 @@ public class AstGraphviz
 			/****************************/
 			try
 			{
-				String dirname="./output/";
-				String filename="AST_IN_GRAPHVIZ_DOT_FORMAT.txt";
-				instance.fileWriter = new PrintWriter(dirname+filename);
+				// String dirname="./output/";
+				// File dir = new File(dirname);
+				// String filename="AST_IN_GRAPHVIZ_DOT_FORMAT.txt";
+				// if (!dir.exists()) {
+				// 	dir.mkdirs();
+				// }
+				// instance.fileWriter = new PrintWriter(dirname+filename);
+
+				// מצא את התיקייה של ANALYZER
+				File jarDir = getJarDirectory();
+
+				// צור output/ שם
+				File outputDir = new File(jarDir, "output");
+				outputDir.mkdirs();
+
+				// כתוב את הקובץ
+				File outputFile = new File(outputDir, "AST_IN_GRAPHVIZ_DOT_FORMAT.txt");
+				instance.fileWriter = new PrintWriter(outputFile);
 			}
 			catch (Exception e)
 			{
@@ -50,6 +67,49 @@ public class AstGraphviz
 			instance.fileWriter.print("graph [ordering = \"out\"]\n");
 		}
 		return instance;
+	}
+
+	/**
+	 * Get the directory where the JAR file or class files are located.
+	 */
+	private static File getJarDirectory()
+	{
+		try
+		{
+			// Get the location of AstGraphviz class
+			URL url = AstGraphviz.class.getProtectionDomain().getCodeSource().getLocation();
+			File file = new File(url.toURI());
+			
+			// If it's a JAR file, get its parent directory
+			// If it's a directory (classes), go up to find the root
+			if (file.isFile())
+			{
+				// It's a JAR file - return its parent directory
+				return file.getParentFile();
+			}
+			else
+			{
+				// It's a directory (bin/ast/) - go up to root (ex4/)
+				// Assuming structure: ex4/bin/ast/AstGraphviz.class
+				File current = file;
+				// Go up from bin/ast/ to bin/
+				if (current.getName().equals("ast"))
+				{
+					current = current.getParentFile();
+				}
+				// Go up from bin/ to ex4/
+				if (current.getName().equals("bin"))
+				{
+					current = current.getParentFile();
+				}
+				return current;
+			}
+		}
+		catch (Exception e)
+		{
+			// Fallback to current directory
+			return new File(".");
+		}
 	}
 
 	/***********************************/

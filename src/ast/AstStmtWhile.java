@@ -1,71 +1,115 @@
 package ast;
 
+import types.*;
+import symboltable.*;
 import temp.*;
 import ir.*;
 
 public class AstStmtWhile extends AstStmt
 {
-	public AstExp cond;
-	public AstStmtList body;
+    public AstExp cond;
+    public AstStmtList body;
 
-	/*******************/
-	/*  CONSTRUCTOR(S) */
-	/*******************/
-	public AstStmtWhile(AstExp cond, AstStmtList body)
-	{
-		this.cond = cond;
-		this.body = body;
-	}
+    /*******************/
+    /*  CONSTRUCTOR(S) */
+    /*******************/
+    public AstStmtWhile(AstExp cond, AstStmtList body)
+    {
+        serialNumber = AstNodeSerialNumber.getFresh();
+        this.cond = cond;
+        this.body = body;
+    }
 
-	public Temp irMe()
-	{
-		/*******************************/
-		/* [1] Allocate 2 fresh labels */
-		/*******************************/
-		String labelEnd   = IrCommand.getFreshLabel("end");
-		String labelStart = IrCommand.getFreshLabel("start");
+    @Override
+    public void printMe()
+    {
+        System.out.print("AST NODE STMT WHILE\n");
 
-		/*********************************/
-		/* [2] entry label for the while */
-		/*********************************/
-		Ir.
-				getInstance().
-				AddIrCommand(new IrCommandLabel(labelStart));
+        if (cond != null) cond.printMe();
+        if (body != null) body.printMe();
 
-		/********************/
-		/* [3] cond.IRme(); */
-		/********************/
-		Temp condTemp = cond.irMe();
+        AstGraphviz.getInstance().logNode(
+                serialNumber,
+                "WHILE (cond)\nDO body");
 
-		/******************************************/
-		/* [4] Jump conditionally to the loop end */
-		/******************************************/
-		Ir.
-				getInstance().
-				AddIrCommand(new IrCommandJumpIfEqToZero(condTemp,labelEnd));
+        if (cond != null) AstGraphviz.getInstance().logEdge(serialNumber, cond.serialNumber);
+        if (body != null) AstGraphviz.getInstance().logEdge(serialNumber, body.serialNumber);
+    }
 
-		/*******************/
-		/* [5] body.IRme() */
-		/*******************/
-		body.irMe();
+    @Override
+    public Type semantMe()
+    {
+        Type condType = cond.semantMe();
 
-		/******************************/
-		/* [6] Jump to the loop entry */
-		/******************************/
-		Ir.
-				getInstance().
-				AddIrCommand(new IrCommandJumpLabel(labelStart));
+        if (!(condType instanceof TypeInt)) {
+            AstNode.error(lineNumber, "while condition must be int");
+        }
 
-		/**********************/
-		/* [7] Loop end label */
-		/**********************/
-		Ir.
-				getInstance().
-				AddIrCommand(new IrCommandLabel(labelEnd));
+        // Open a new scope for the WHILE body
+        SymbolTable.beginScope();
+        
+        body.semantMe();
+        
+        // Close the WHILE body scope
+        SymbolTable.endScope();
+        
+        return null;
+    }
 
-		/*******************/
-		/* [8] return null */
-		/*******************/
-		return null;
-	}
+    /*****************/
+    /* IR ME         */
+    /*****************/
+    @Override
+    public Temp irMe()
+    {
+        /*******************************/
+        /* [1] Allocate 2 fresh labels */
+        /*******************************/
+        String labelStart = IrCommand.getFreshLabel("while_start");
+        String labelEnd   = IrCommand.getFreshLabel("while_end");
+
+        /*********************************/
+        /* [2] Entry label for the while */
+        /*********************************/
+        Ir.getInstance().AddIrCommand(new IrCommandLabel(labelStart));
+
+        /********************/
+        /* [3] cond.IRme(); */
+        /********************/
+        Temp condTemp = cond.irMe();
+
+        /******************************************/
+        /* [4] Jump conditionally to the loop end */
+        /******************************************/
+        Ir.getInstance().AddIrCommand(new IrCommandJumpIfEqToZero(condTemp, labelEnd));
+
+        /*******************/
+        /* [5] body.IRme() */
+        /*******************/
+        if (body != null)
+        {
+            // Begin scope for VarNameMapper (to handle shadowing)
+            VarNameMapper.getInstance().beginScope();
+            
+            body.irMe();
+            
+            // End scope for VarNameMapper
+            VarNameMapper.getInstance().endScope();
+        }
+
+        /******************************/
+        /* [6] Jump to the loop entry */
+        /******************************/
+        Ir.getInstance().AddIrCommand(new IrCommandJumpLabel(labelStart));
+
+        /**********************/
+        /* [7] Loop end label */
+        /**********************/
+        Ir.getInstance().AddIrCommand(new IrCommandLabel(labelEnd));
+
+        /*******************/
+        /* [8] Return null */
+        /*******************/
+        return null;
+    }
 }

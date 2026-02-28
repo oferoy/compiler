@@ -1,6 +1,7 @@
 package ast;
 
 import types.*;
+import temp.*;
 
 public abstract class AstStmt extends AstNode
 {
@@ -11,4 +12,10 @@ public abstract class AstStmt extends AstNode
 	{
 		return null;
 	}
+
+	/*******************************************/
+	/* Abstract method - must be implemented  */
+	/* by all statement subclasses            */
+	/*******************************************/
+	public abstract Temp irMe();
 }

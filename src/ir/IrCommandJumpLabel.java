@@ -3,29 +3,20 @@
 /***********/
 package ir;
 
-/*******************/
-/* GENERAL IMPORTS */
-/*******************/
-
-/*******************/
-/* PROJECT IMPORTS */
-/*******************/
 import mips.*;
 
 public class IrCommandJumpLabel extends IrCommand
 {
 	String labelName;
-	
+
 	public IrCommandJumpLabel(String labelName)
 	{
 		this.labelName = labelName;
 	}
-	
-	/***************/
-	/* MIPS me !!! */
-	/***************/
-	public void mipsMe()
-	{
-		MipsGenerator.getInstance().jump(labelName);
-	}
+
+	@Override
+	public String getJumpLabel() { return labelName; }
+
+	@Override
+	public void mipsMe() { MipsGenerator.getInstance().jump(labelName); }
 }

@@ -1,72 +1,116 @@
 package ast;
 
 import types.*;
+import symboltable.*;
 
 public class AstTypeNameList extends AstNode
 {
-	/****************/
-	/* DATA MEMBERS */
-	/****************/
-	public AstTypeName head;
-	public AstTypeNameList tail;
-	
-	/******************/
-	/* CONSTRUCTOR(S) */
-	/******************/
-	public AstTypeNameList(AstTypeName head, AstTypeNameList tail)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		serialNumber = AstNodeSerialNumber.getFresh();
+    /****************/
+    /* DATA MEMBERS */
+    /****************/
+    public AstTypeName head;
+    public AstTypeNameList tail;
 
-		this.head = head;
-		this.tail = tail;
-	}
+    /******************/
+    /* CONSTRUCTOR(S) */
+    /******************/
+    public AstTypeNameList(AstTypeName head, AstTypeNameList tail)
+    {
+        serialNumber = AstNodeSerialNumber.getFresh();
+        this.head = head;
+        this.tail = tail;
+    }
 
-	/******************************************************/
-	/* The printing message for a type name list AST node */
-	/******************************************************/
-	public void printMe()
-	{
-		/**************************************/
-		/* AST NODE TYPE = AST TYPE NAME LIST */
-		/**************************************/
-		System.out.print("AST TYPE NAME LIST\n");
+    /******************************************************/
+    /* The printing message for a Type name list AST node */
+    /******************************************************/
+    public void printMe()
+    {
+        System.out.print("AST Type NAME LIST\n");
 
-		/*************************************/
-		/* RECURSIVELY PRINT HEAD + TAIL ... */
-		/*************************************/
-		if (head != null) head.printMe();
-		if (tail != null) tail.printMe();
+        if (head != null) head.printMe();
+        if (tail != null) tail.printMe();
 
-		/**********************************/
-		/* PRINT to AST GRAPHVIZ DOT file */
-		/**********************************/
-		AstGraphviz.getInstance().logNode(
-				serialNumber,
-			"TYPE-NAME\nLIST\n");
-		
-		/****************************************/
-		/* PRINT Edges to AST GRAPHVIZ DOT file */
-		/****************************************/
-		if (head != null) AstGraphviz.getInstance().logEdge(serialNumber,head.serialNumber);
-		if (tail != null) AstGraphviz.getInstance().logEdge(serialNumber,tail.serialNumber);
-	}
+        AstGraphviz.getInstance().logNode(
+            serialNumber,
+            "TYPE-NAME\nLIST\n");
 
-	public TypeList semantMe()
-	{
-		if (tail == null)
-		{
-			return new TypeList(
-				head.semantMe(),
-				null);
-		}
-		else
-		{
-			return new TypeList(
-				head.semantMe(),
-				tail.semantMe());
-		}
-	}
+        if (head != null) AstGraphviz.getInstance().logEdge(serialNumber, head.serialNumber);
+        if (tail != null) AstGraphviz.getInstance().logEdge(serialNumber, tail.serialNumber);
+    }
+
+    /******************************************************/
+    /* Build a TypeList for the formal parameters         */
+    /******************************************************/
+    public TypeList buildTypeList() {
+        if (head == null) {
+            return null;
+        }
+
+        Type headType;
+
+        if ("int".equals(head.type)) {
+            headType = TypeInt.getInstance();
+        } else if ("string".equals(head.type)) {
+            headType = TypeString.getInstance();
+        } else if ("void".equals(head.type)) {
+            AstNode.error(lineNumber, "parameter type cannot be void");
+            headType = null; // unreachable
+        } else {
+            headType = SymbolTable.find(head.type);
+            if (headType == null) {
+                AstNode.error(lineNumber,
+                    "non-existing parameter type: " + head.type);
+            }
+        }
+
+        TypeList tailTypes = null;
+        if (tail != null) {
+            tailTypes = tail.buildTypeList();
+        }
+
+        return new TypeList(headType, tailTypes);
+    }
+
+    /******************************************************/
+    /* Insert parameters as variables into current scope  */
+    /******************************************************/
+    public void insertParamsIntoScope() {
+        if (head == null) return;
+
+        Type paramType;
+
+        if ("int".equals(head.type)) {
+            paramType = TypeInt.getInstance();
+        } else if ("string".equals(head.type)) {
+            paramType = TypeString.getInstance();
+        } else if ("void".equals(head.type)) {
+            AstNode.error(lineNumber, "parameter type cannot be void");
+            paramType = null; // unreachable
+        } else {
+            paramType = SymbolTable.find(head.type);
+            if (paramType == null) {
+                AstNode.error(lineNumber,
+                    "non-existing parameter type: " + head.type);
+            }
+        }
+
+        // Check duplicate name in current function scope
+        if (!SymbolTable.insert(head.name, paramType)) {
+            AstNode.error(lineNumber,
+                "duplicate parameter name: " + head.name);
+        }
+
+        if (tail != null) {
+            tail.insertParamsIntoScope();
+        }
+    }
+
+    @Override
+    public Type semantMe() {
+        // Not used directly; we provide buildTypeList/insertParamsInstead.
+        // Return value unused in this exercise.
+        buildTypeList();
+        return null;
+    }
 }

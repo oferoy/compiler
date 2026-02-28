@@ -1,128 +1,175 @@
 package ast;
 
 import types.*;
+import symboltable.*;
 import temp.*;
 import ir.*;
 
 public class AstExpBinop extends AstExp
 {
-	int op;
-	public AstExp left;
-	public AstExp right;
-	
-	/******************/
-	/* CONSTRUCTOR(S) */
-	/******************/
-	public AstExpBinop(AstExp left, AstExp right, int op)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		serialNumber = AstNodeSerialNumber.getFresh();
+    public int op;
+    public AstExp left;
+    public AstExp right;
+    /** Result type from semantMe (used in irMe for string concat). */
+    public Type resultType;
 
-		/***************************************/
-		/* PRINT CORRESPONDING DERIVATION RULE */
-		/***************************************/
-		System.out.print("====================== exp -> exp BINOP exp\n");
+    public static final int PLUS = 0;
+    public static final int MINUS = 1;
+    public static final int TIMES = 2;
+    public static final int DIVIDE = 3;
+    public static final int LT = 4;
+    public static final int GT = 5;
+    public static final int EQ = 6;
 
-		/*******************************/
-		/* COPY INPUT DATA MENBERS ... */
-		/*******************************/
-		this.left = left;
-		this.right = right;
-		this.op = op;
-	}
-	
-	/*************************************************/
-	/* The printing message for a binop exp AST node */
-	/*************************************************/
-	public void printMe()
-	{
-		String sop="";
-		
-		/*********************************/
-		/* CONVERT OP to a printable sop */
-		/*********************************/
-		if (op == 0) {sop = "+";}
-		if (op == 1) {sop = "-";}
-		if (op == 3) {sop = "=";}
+    /******************/
+    /* CONSTRUCTOR    */
+    /******************/
+    public AstExpBinop(AstExp left, AstExp right, int op)
+    {
+        this.serialNumber = AstNodeSerialNumber.getFresh();
+        this.left = left;
+        this.right = right;
+        this.op = op;
+    }
 
-		/**********************************/
-		/* AST NODE TYPE = AST BINOP EXP */
-		/*********************************/
-		System.out.print("AST NODE BINOP EXP\n");
-		System.out.format("BINOP EXP(%s)\n",sop);
+    /***************/
+    /* PRINT ME    */
+    /***************/
+    @Override
+    public void printMe()
+    {
+        System.out.print("AST NODE BINOP\n");
 
-		/**************************************/
-		/* RECURSIVELY PRINT left + right ... */
-		/**************************************/
-		if (left != null) left.printMe();
-		if (right != null) right.printMe();
+        if (left != null) left.printMe();
+        if (right != null) right.printMe();
 
-		/***************************************/
-		/* PRINT Node to AST GRAPHVIZ DOT file */
-		/***************************************/
-		AstGraphviz.getInstance().logNode(
-                serialNumber,
-			String.format("BINOP(%s)",sop));
-		
-		/****************************************/
-		/* PRINT Edges to AST GRAPHVIZ DOT file */
-		/****************************************/
-		if (left  != null) AstGraphviz.getInstance().logEdge(serialNumber,left.serialNumber);
-		if (right != null) AstGraphviz.getInstance().logEdge(serialNumber,right.serialNumber);
-	}
+        AstGraphviz.getInstance().logNode(serialNumber, "BINOP");
 
-	public Type semantMe()
-	{
-		Type t1 = null;
-		Type t2 = null;
-		
-		if (left  != null) t1 = left.semantMe();
-		if (right != null) t2 = right.semantMe();
-		
-		if ((t1 == TypeInt.getInstance()) && (t2 == TypeInt.getInstance()))
-		{
-			return TypeInt.getInstance();
-		}
-		System.exit(0);
-		return null;
-	}
+        if (left != null) AstGraphviz.getInstance().logEdge(serialNumber, left.serialNumber);
+        if (right != null) AstGraphviz.getInstance().logEdge(serialNumber, right.serialNumber);
+    }
 
-	public Temp irMe()
-	{
-		Temp t1 = null;
-		Temp t2 = null;
-		Temp dst = TempFactory.getInstance().getFreshTemp();
+    /*****************/
+    /* SEMANT ME     */
+    /*****************/
+    @Override
+    public Type semantMe()
+    {
+        // Evaluate subexpressions
+        Type leftType = left.semantMe();
+        Type rightType = right.semantMe();
 
-		if (left  != null) t1 = left.irMe();
-		if (right != null) t2 = right.irMe();
+        // Extract constant value if needed for division
+        Integer rightConst = (right instanceof AstExpInt)
+                ? ((AstExpInt) right).value
+                : null;
 
-		if (op == 0)
-		{
-			Ir.
-					getInstance().
-					AddIrCommand(new IrCommandBinopAddIntegers(dst,t1,t2));
-		}
-		if (op == 2)
-		{
-			Ir.
-					getInstance().
-					AddIrCommand(new IrCommandBinopMulIntegers(dst,t1,t2));
-		}
-		if (op == 3)
-		{
-			Ir.
-					getInstance().
-					AddIrCommand(new IrCommandBinopEqIntegers(dst,t1,t2));
-		}
-		if (op == 4)
-		{
-			Ir.
-					getInstance().
-					AddIrCommand(new IrCommandBinopLtIntegers(dst,t1,t2));
-		}
-		return dst;
-	}
+        // Use global type engine
+        Type result = TypesHelper.binopResult(op, leftType, rightType, rightConst);
 
+        if (result == null) {
+            AstNode.error(lineNumber,
+                    String.format("illegal operation: %s %s %s",
+                            leftType.name, opName(), rightType.name));
+        }
+
+        this.resultType = result;
+        return result;
+    }
+
+    /***********************/
+    /* HELPER: OPERATOR    */
+    /* NAME FOR DEBUGGING  */
+    /***********************/
+    private String opName()
+    {
+        return switch (op) {
+            case PLUS -> "+";
+            case MINUS -> "-";
+            case TIMES -> "*";
+            case DIVIDE -> "/";
+            case LT -> "<";
+            case GT -> ">";
+            case EQ -> "=";
+            default -> "?";
+        };
+    }
+
+    /*****************/
+    /* IR ME         */
+    /*****************/
+    @Override
+    public Temp irMe()
+    {
+        /**************************************/
+        /* [1] Recursively generate IR for   */
+        /*     left and right operands        */
+        /**************************************/
+        Temp t1 = left.irMe();
+        Temp t2 = right.irMe();
+
+        /**************************************/
+        /* [2] Allocate a fresh temporary     */
+        /*     to hold the result             */
+        /**************************************/
+        Temp dst = TempFactory.getInstance().getFreshTemp();
+
+        /**************************************/
+        /* [3] Emit the appropriate IR command */
+        /*     based on the operator          */
+        /**************************************/
+        switch (op)
+        {
+            case PLUS:  // 0
+                if (resultType != null && resultType instanceof TypeString) {
+                    Ir.getInstance().AddIrCommand(
+                        new IrCommandConcatStrings(dst, t1, t2));
+                } else {
+                    Ir.getInstance().AddIrCommand(
+                        new IrCommandBinopAddIntegers(dst, t1, t2));
+                }
+                break;
+
+            case MINUS: // 1
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopSubIntegers(dst, t1, t2));
+                break;
+
+            case TIMES: // 2
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopMulIntegers(dst, t1, t2));
+                break;
+
+            case DIVIDE: // 3
+                // DIVIDE not needed for ex4 subset, but included for completeness
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopDivIntegers(dst, t1, t2));
+                break;
+
+            case LT:    // 4
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopLtIntegers(dst, t1, t2));
+                break;
+
+            case GT:    // 5
+                // GT not used in ex4 subset, but included for completeness
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopGtIntegers(dst, t1, t2));
+                break;
+
+            case EQ:    // 6
+                Ir.getInstance().AddIrCommand(
+                    new IrCommandBinopEqIntegers(dst, t1, t2));
+                break;
+
+            default:
+                System.err.println("ERROR: Unknown operator " + op);
+                break;
+        }
+
+        /**************************************/
+        /* [4] Return the destination temp    */
+        /**************************************/
+        return dst;
+    }
 }

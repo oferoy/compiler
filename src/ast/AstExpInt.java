@@ -17,8 +17,6 @@ public class AstExpInt extends AstExp
 		/* SET A UNIQUE SERIAL NUMBER */
 		/******************************/
 		serialNumber = AstNodeSerialNumber.getFresh();
-
-		System.out.format("====================== exp -> INT( %d )\n", value);
 		this.value = value;
 	}
 
@@ -28,7 +26,7 @@ public class AstExpInt extends AstExp
 	public void printMe()
 	{
 		/*******************************/
-		/* AST NODE TYPE = AST INT EXP */
+		/* AST NODE Type = AST INT EXP */
 		/*******************************/
 		System.out.format("AST NODE INT( %d )\n",value);
 
@@ -44,11 +42,27 @@ public class AstExpInt extends AstExp
 	{
 		return TypeInt.getInstance();
 	}
-
+	
+	/*****************/
+	/* IR ME         */
+	/*****************/
+	@Override
 	public Temp irMe()
 	{
+		/**************************************/
+		/* [1] Create a fresh temporary       */
+		/**************************************/
 		Temp t = TempFactory.getInstance().getFreshTemp();
-		Ir.getInstance().AddIrCommand(new IRcommandConstInt(t,value));
+
+		/**************************************/
+		/* [2] Emit IR command to load the    */
+		/*     integer constant into the temp */
+		/**************************************/
+		Ir.getInstance().AddIrCommand(new IRcommandConstInt(t, value));
+
+		/**************************************/
+		/* [3] Return the temporary           */
+		/**************************************/
 		return t;
 	}
 }

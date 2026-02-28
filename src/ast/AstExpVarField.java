@@ -1,94 +1,88 @@
 package ast;
 
 import types.*;
+import symboltable.*;
+import temp.*;
+import ir.*;
 
 public class AstExpVarField extends AstExpVar
 {
-	public AstExpVar var;
-	public String fieldName;
-	
-	/******************/
-	/* CONSTRUCTOR(S) */
-	/******************/
-	public AstExpVarField(AstExpVar var, String fieldName)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		serialNumber = AstNodeSerialNumber.getFresh();
+    public AstExpVar var;
+    public String fieldName;
+    /** Byte offset of field in class layout (set in semantMe). */
+    public int fieldOffset;
 
-		System.out.format("====================== var -> var DOT ID( %s )\n",fieldName);
-		this.var = var;
-		this.fieldName = fieldName;
-	}
+    public AstExpVarField(AstExpVar var, String fieldName)
+    {
+        this.serialNumber = AstNodeSerialNumber.getFresh();
+        this.var = var;
+        this.fieldName = fieldName;
+    }
 
-	/*************************************************/
-	/* The printing message for a field var AST node */
-	/*************************************************/
-	public void printMe()
-	{
-		/*********************************/
-		/* AST NODE TYPE = AST FIELD VAR */
-		/*********************************/
-		System.out.format("FIELD\nNAME\n(___.%s)\n",fieldName);
+    @Override
+    public void printMe()
+    {
+        System.out.format("FIELD VAR (%s)\n", fieldName);
 
-		/**********************************************/
-		/* RECURSIVELY PRINT VAR, then FIELD NAME ... */
-		/**********************************************/
-		if (var != null) var.printMe();
+        if (var != null) var.printMe();
 
-		/**********************************/
-		/* PRINT to AST GRAPHVIZ DOT file */
-		/**********************************/
-		AstGraphviz.getInstance().logNode(
-                serialNumber,
-			String.format("FIELD\nVAR\n___.%s",fieldName));
+        AstGraphviz.getInstance().logNode(
+            serialNumber,
+            String.format("FIELD\n___.%s", fieldName)
+        );
 
-		/****************************************/
-		/* PRINT Edges to AST GRAPHVIZ DOT file */
-		/****************************************/
-		if (var  != null) AstGraphviz.getInstance().logEdge(serialNumber,var.serialNumber);
-	}
+        if (var != null)
+            AstGraphviz.getInstance().logEdge(serialNumber, var.serialNumber);
+    }
 
-	public Type semantMe()
-	{
-		Type t = null;
-		TypeClass tc = null;
-		
-		/******************************/
-		/* [1] Recursively semant var */
-		/******************************/
-		if (var != null) t = var.semantMe();
-		
-		/*********************************/
-		/* [2] Make sure type is a class */
-		/*********************************/
-		if (t.isClass() == false)
-		{
-			System.out.format(">> ERROR [%d:%d] access %s field of a non-class variable\n",6,6,fieldName);
-			System.exit(0);
-		}
-		else
-		{
-			tc = (TypeClass) t;
-		}
-		
-		/************************************/
-		/* [3] Look for fiedlName inside tc */
-		/************************************/
-		for (TypeList it = tc.dataMembers; it != null; it=it.tail)
-		{
-			if (it.head.name == fieldName)
-			{
-				return it.head;
-			}
-		}
-		
-		/*********************************************/
-		/* [4] fieldName does not exist in class var */
-		/*********************************************/
-		System.out.format(">> ERROR [%d:%d] field %s does not exist in class\n",6,6,fieldName);							
-		System.exit(0);
-		return null;
-	}
+    @Override
+    public Type semantMe()
+    {
+        // ------------------------------------------------------------
+        // 1. Semant the base (object)
+        // ------------------------------------------------------------
+        Type baseType = var.semantMe();
+
+        if (!(baseType instanceof TypeClass)) {
+            AstNode.error(lineNumber,
+                "accessing field " + fieldName +
+                " of non-class type " + baseType.name);
+        }
+
+        TypeClass cls = (TypeClass) baseType;
+
+        // ------------------------------------------------------------
+        // 2. Look for the field and compute offset
+        // ------------------------------------------------------------
+        Type fieldType = cls.findField(fieldName);
+
+        if (fieldType == null) {
+            AstNode.error(lineNumber,
+                "field " + fieldName +
+                " does not exist in class " + cls.name);
+        }
+
+        // ------------------------------------------------------------
+        // 3. Ensure it's a field, not a method
+        // ------------------------------------------------------------
+        if (fieldType instanceof TypeFunction) {
+            AstNode.error(lineNumber,
+                "method " + fieldName +
+                " cannot be accessed without a call");
+        }
+
+        this.fieldOffset = cls.getFieldOffset(fieldName);
+        return fieldType;
+    }
+
+    /*****************/
+    /* IR ME         */
+    /*****************/
+    @Override
+    public Temp irMe() {
+        Temp baseTemp = var.irMe();
+        Temp dst = TempFactory.getInstance().getFreshTemp();
+        Ir.getInstance().AddIrCommand(new IrCommandLoadField(dst, baseTemp, fieldOffset));
+        return dst;
+    }
 }
