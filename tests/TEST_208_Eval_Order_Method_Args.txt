@@ -1,0 +1,24 @@
+int g := 0;
+
+class Calc
+{
+    int sum(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+}
+
+int step()
+{
+    g := g + 1;
+    return g;
+}
+
+void main()
+{
+    Calc c := new Calc;
+    g := 0;
+    int r := c.sum(step(), step(), step());
+    PrintInt(r);
+    PrintInt(g);
+}

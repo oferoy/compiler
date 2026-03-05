@@ -1,45 +1,57 @@
 package ast;
 
 import types.*;
+import temp.*;
+import ir.*;
 
 public class AstExpString extends AstExp
 {
-	public String value;
-	
-	/******************/
-	/* CONSTRUCTOR(S) */
-	/******************/
-	public AstExpString(String value)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		serialNumber = AstNodeSerialNumber.getFresh();
+    public String value;
 
-		System.out.format("====================== exp -> STRING( %s )\n", value);
-		this.value = value;
-	}
+    /******************/
+    /* ORIGINAL CONSTRUCTOR USED BY CUP */
+    /******************/
+    public AstExpString(String value)
+    {
+        this(value, 0); // default line number
+    }
 
-	/******************************************************/
-	/* The printing message for a STRING EXP AST node */
-	/******************************************************/
-	public void printMe()
-	{
-		/*******************************/
-		/* AST NODE TYPE = AST STRING EXP */
-		/*******************************/
-		System.out.format("AST NODE STRING( %s )\n",value);
+    /******************/
+    /* NEW CONSTRUCTOR WITH LINE NUMBER */
+    /******************/
+    public AstExpString(String value, int lineNumber)
+    {
+        this.serialNumber = AstNodeSerialNumber.getFresh();
+        this.value = value;
+        this.lineNumber = lineNumber;
+    }
 
-		/***************************************/
-		/* PRINT Node to AST GRAPHVIZ DOT file */
-		/***************************************/
-		AstGraphviz.getInstance().logNode(
-                serialNumber,
-			String.format("STRING\n%s",value.replace('"','\'')));
-	}
+    @Override
+    public void printMe()
+    {
+        System.out.format("AST NODE STRING( %s )\n", value);
 
-	public Type semantMe()
-	{
-		return TypeString.getInstance();
-	}
+        AstGraphviz.getInstance().logNode(
+            serialNumber,
+            String.format("STRING\n%s", value.replace('"','\''))
+        );
+    }
+
+    @Override
+    public Type semantMe()
+    {
+        return TypeString.getInstance();
+    }
+
+    /*****************/
+    /* IR ME         */
+    /*****************/
+    @Override
+    public Temp irMe() {
+        String label = "str_" + serialNumber;
+        Ir.getInstance().AddIrCommand(new IrCommandAllocateString(label, value));
+        Temp dst = TempFactory.getInstance().getFreshTemp();
+        Ir.getInstance().AddIrCommand(new IrCommandLoadAddress(dst, label));
+        return dst;
+    }
 }

@@ -1,0 +1,8 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr arr := nil;
+    PrintString("about");
+    int x := arr[0];
+}

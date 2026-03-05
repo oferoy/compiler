@@ -1,0 +1,8 @@
+void main()
+{
+    PrintInt(7 / 2);
+    PrintInt(0 - 7 / 2);
+    PrintInt(1 / 2);
+    PrintInt(99 / 100);
+    PrintInt(100 / 100);
+}

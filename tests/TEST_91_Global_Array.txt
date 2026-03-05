@@ -1,0 +1,16 @@
+array IntArr = int[];
+IntArr arr := nil;
+
+void main()
+{
+    arr := new int[3];
+    arr[0] := 10;
+    arr[1] := 20;
+    arr[2] := 30;
+    int i := 0;
+    while (i < 3)
+    {
+        PrintInt(arr[i]);
+        i := i + 1;
+    }
+}

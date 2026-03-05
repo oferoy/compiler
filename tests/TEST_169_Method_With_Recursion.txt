@@ -1,0 +1,40 @@
+class List {
+    int val;
+    List rest := nil;
+}
+
+int length(List l)
+{
+    if (l = nil)
+    {
+        return 0;
+    }
+    return 1 + length(l.rest);
+}
+
+int sum(List l)
+{
+    if (l = nil)
+    {
+        return 0;
+    }
+    return l.val + sum(l.rest);
+}
+
+void main()
+{
+    List a := new List;
+    a.val := 10;
+    List b := new List;
+    b.val := 20;
+    List c := new List;
+    c.val := 30;
+    a.rest := b;
+    b.rest := c;
+    PrintInt(length(a));
+    PrintInt(sum(a));
+    PrintInt(length(b));
+    PrintInt(sum(b));
+    PrintInt(length(c));
+    PrintInt(sum(c));
+}

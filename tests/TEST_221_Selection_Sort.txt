@@ -1,0 +1,43 @@
+array IntArr = int[];
+
+void selectionSort(IntArr arr, int n)
+{
+    int i := 0;
+    while (i < n - 1)
+    {
+        int minIdx := i;
+        int j := i + 1;
+        while (j < n)
+        {
+            if (arr[j] < arr[minIdx])
+            {
+                minIdx := j;
+            }
+            j := j + 1;
+        }
+        int tmp := arr[i];
+        arr[i] := arr[minIdx];
+        arr[minIdx] := tmp;
+        i := i + 1;
+    }
+}
+
+void main()
+{
+    IntArr data := new int[8];
+    data[0] := 64;
+    data[1] := 25;
+    data[2] := 12;
+    data[3] := 22;
+    data[4] := 11;
+    data[5] := 90;
+    data[6] := 1;
+    data[7] := 45;
+    selectionSort(data, 8);
+    int i := 0;
+    while (i < 8)
+    {
+        PrintInt(data[i]);
+        i := i + 1;
+    }
+}

@@ -1,0 +1,30 @@
+int classify(int x)
+{
+    if (x < 0)
+    {
+        return 0 - 1;
+    }
+    if (x = 0)
+    {
+        return 0;
+    }
+    if (x < 10)
+    {
+        return 1;
+    }
+    if (x < 100)
+    {
+        return 2;
+    }
+    return 3;
+}
+
+void main()
+{
+    PrintInt(classify(0 - 5));
+    PrintInt(classify(0));
+    PrintInt(classify(5));
+    PrintInt(classify(50));
+    PrintInt(classify(500));
+    PrintInt(classify(32767));
+}

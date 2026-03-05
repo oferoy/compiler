@@ -1,0 +1,43 @@
+class L0
+{
+    int val := 1;
+    int getVal() { return val; }
+    string who() { return "zero"; }
+}
+
+class L1 extends L0
+{
+    int getVal() { return val * 10; }
+    string who() { return "one"; }
+}
+
+class L2 extends L1
+{
+    int getVal() { return val * 100; }
+    string who() { return "two"; }
+}
+
+class L3 extends L2
+{
+    int getVal() { return val * 1000; }
+    string who() { return "three"; }
+}
+
+class L4 extends L3
+{
+    int getVal() { return val * 10000; }
+    string who() { return "four"; }
+}
+
+void main()
+{
+    L0 obj := new L4;
+    PrintInt(obj.getVal());
+    PrintString(obj.who());
+    obj := new L2;
+    PrintInt(obj.getVal());
+    PrintString(obj.who());
+    obj := new L0;
+    PrintInt(obj.getVal());
+    PrintString(obj.who());
+}

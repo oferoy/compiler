@@ -1,0 +1,26 @@
+class Node
+{
+    int value := 0;
+    Node next := nil;
+}
+
+Node createNode(int val)
+{
+    Node n := new Node;
+    n.value := val;
+    return n;
+}
+
+void main()
+{
+    Node head := createNode(10);
+    head.next := createNode(20);
+    head.next.next := createNode(30);
+    
+    Node current := head;
+    while (1 - (current = nil))
+    {
+        PrintInt(current.value);
+        current := current.next;
+    }
+}

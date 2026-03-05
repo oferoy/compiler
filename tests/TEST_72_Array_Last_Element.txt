@@ -1,0 +1,10 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[5];
+    a[0] := 10;
+    a[4] := 50;
+    PrintInt(a[0]);
+    PrintInt(a[4]);
+}

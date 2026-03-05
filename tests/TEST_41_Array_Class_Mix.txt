@@ -1,0 +1,36 @@
+array IntArray = int[];
+
+class Container
+{
+    IntArray data;
+    
+    void fill(int size, int value)
+    {
+        data := new int[size];
+        int i := 0;
+        while (i < size)
+        {
+            data[i] := value;
+            i := i + 1;
+        }
+    }
+    
+    int sum(int size)
+    {
+        int total := 0;
+        int i := 0;
+        while (i < size)
+        {
+            total := total + data[i];
+            i := i + 1;
+        }
+        return total;
+    }
+}
+
+void main()
+{
+    Container c := new Container;
+    c.fill(10, 7);
+    PrintInt(c.sum(10));
+}

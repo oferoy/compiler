@@ -1,0 +1,18 @@
+void main()
+{
+    string e := "";
+    string a := "x";
+    PrintInt(e = "");
+    PrintInt(e = a);
+    string b := e + e;
+    PrintInt(b = "");
+    string c := e + a;
+    PrintInt(c = "x");
+    PrintInt(c = a);
+    string d := a + e;
+    PrintInt(d = a);
+    PrintString(e);
+    PrintString(b);
+    PrintString(c);
+    PrintString(d);
+}

@@ -1,0 +1,32 @@
+class Shape {
+    int area(){ return 0; }
+    string name(){ return "shape"; }
+}
+class Square extends Shape {
+    int side;
+    int area(){ return side * side; }
+    string name(){ return "square"; }
+}
+class Rect extends Shape {
+    int w;
+    int h;
+    int area(){ return w * h; }
+    string name(){ return "rect"; }
+}
+
+void main()
+{
+    Shape s1 := new Square;
+    Shape s2 := new Rect;
+    Square sq := new Square;
+    Rect r := new Rect;
+    sq.side := 5;
+    s1 := sq;
+    r.w := 3;
+    r.h := 7;
+    s2 := r;
+    PrintString(s1.name());
+    PrintInt(s1.area());
+    PrintString(s2.name());
+    PrintInt(s2.area());
+}

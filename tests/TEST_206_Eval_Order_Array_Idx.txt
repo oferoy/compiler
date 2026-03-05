@@ -1,0 +1,22 @@
+array IntArr = int[];
+int g := 0;
+
+int next()
+{
+    g := g + 1;
+    return g;
+}
+
+void main()
+{
+    IntArr arr := new int[5];
+    arr[0] := 100;
+    arr[1] := 200;
+    arr[2] := 300;
+    arr[3] := 400;
+    arr[4] := 500;
+    g := 0;
+    int val := arr[next()] + arr[next()];
+    PrintInt(val);
+    PrintInt(g);
+}

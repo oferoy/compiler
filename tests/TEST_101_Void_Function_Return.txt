@@ -1,0 +1,12 @@
+void doStuff(int x)
+{
+    if (x < 0) { return; }
+    PrintInt(x);
+}
+
+void main()
+{
+    doStuff(5);
+    doStuff(0 - 1);
+    doStuff(10);
+}

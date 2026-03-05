@@ -1,0 +1,37 @@
+class Pair {
+    int x := 0;
+    int y := 0;
+    int getX() { return x; }
+    int getY() { return y; }
+}
+
+Pair makePair(int a, int b)
+{
+    Pair p := new Pair;
+    p.x := a;
+    p.y := b;
+    return p;
+}
+
+Pair addPairs(Pair p, Pair q)
+{
+    Pair r := new Pair;
+    r.x := p.getX() + q.getX();
+    r.y := p.getY() + q.getY();
+    return r;
+}
+
+void main()
+{
+    Pair a := makePair(1, 2);
+    Pair b := makePair(3, 4);
+    Pair c := addPairs(a, b);
+    PrintInt(c.x);
+    PrintInt(c.y);
+    Pair d := addPairs(c, makePair(10, 20));
+    PrintInt(d.x);
+    PrintInt(d.y);
+    Pair e := addPairs(addPairs(a, b), addPairs(a, b));
+    PrintInt(e.x);
+    PrintInt(e.y);
+}

@@ -1,0 +1,11 @@
+int zero()
+{
+    return 0;
+}
+
+void main()
+{
+    PrintInt(42);
+    int x := 10 / zero();
+    PrintInt(x);
+}

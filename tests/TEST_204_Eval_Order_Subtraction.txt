@@ -1,0 +1,21 @@
+int g := 10;
+
+int decG()
+{
+    g := g - 3;
+    return g;
+}
+
+int negG()
+{
+    g := 0 - g;
+    return g;
+}
+
+void main()
+{
+    g := 10;
+    int r := decG() - negG();
+    PrintInt(r);
+    PrintInt(g);
+}

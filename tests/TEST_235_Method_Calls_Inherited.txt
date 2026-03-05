@@ -1,0 +1,49 @@
+class Counter
+{
+    int count := 0;
+
+    int increment()
+    {
+        count := count + 1;
+        return count;
+    }
+
+    int getCount()
+    {
+        return count;
+    }
+}
+
+class DoubleCounter extends Counter
+{
+    int increment()
+    {
+        count := count + 2;
+        return count;
+    }
+}
+
+class TripleCounter extends Counter
+{
+    int increment()
+    {
+        count := count + 3;
+        return count;
+    }
+}
+
+void main()
+{
+    Counter c := new Counter;
+    Counter d := new DoubleCounter;
+    Counter t := new TripleCounter;
+    PrintInt(c.increment());
+    PrintInt(c.increment());
+    PrintInt(c.getCount());
+    PrintInt(d.increment());
+    PrintInt(d.increment());
+    PrintInt(d.getCount());
+    PrintInt(t.increment());
+    PrintInt(t.increment());
+    PrintInt(t.getCount());
+}

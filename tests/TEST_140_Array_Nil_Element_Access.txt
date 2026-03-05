@@ -1,0 +1,13 @@
+class Foo {
+    int val := 42;
+}
+
+array FooArr = Foo[];
+
+void main()
+{
+    FooArr arr := new Foo[3];
+    arr[0] := new Foo;
+    PrintInt(arr[0].val);
+    int x := arr[1].val;
+}

@@ -1,0 +1,11 @@
+class Base { int x; }
+class Child extends Base { int y; }
+
+void main()
+{
+    Child c := new Child;
+    c.x := 10;
+    c.y := 20;
+    PrintInt(c.x);
+    PrintInt(c.y);
+}

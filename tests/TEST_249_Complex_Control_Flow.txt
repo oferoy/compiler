@@ -1,0 +1,45 @@
+array IntArr = int[];
+
+int collatz(int n)
+{
+    int steps := 0;
+    while (n = 1 = 0)
+    {
+        int half := n / 2;
+        if (half * 2 = n)
+        {
+            n := half;
+        }
+        if (half * 2 = n = 0)
+        {
+            n := n * 3 + 1;
+        }
+        steps := steps + 1;
+    }
+    return steps;
+}
+
+void main()
+{
+    PrintInt(collatz(1));
+    PrintInt(collatz(2));
+    PrintInt(collatz(3));
+    PrintInt(collatz(6));
+    PrintInt(collatz(7));
+    PrintInt(collatz(27));
+    int maxSteps := 0;
+    int maxN := 1;
+    int i := 1;
+    while (i < 100)
+    {
+        int s := collatz(i);
+        if (s > maxSteps)
+        {
+            maxSteps := s;
+            maxN := i;
+        }
+        i := i + 1;
+    }
+    PrintInt(maxN);
+    PrintInt(maxSteps);
+}

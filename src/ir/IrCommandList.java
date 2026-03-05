@@ -22,11 +22,7 @@ public class IrCommandList
 		this.tail = tail;
 	}
 
-	/***************/
-	/* MIPS me !!! */
-	/***************/
-	public void mipsMe()
-	{
+	public void mipsMe() {
 		if (head != null) head.mipsMe();
 		if (tail != null) tail.mipsMe();
 	}

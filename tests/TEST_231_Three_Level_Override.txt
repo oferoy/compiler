@@ -1,0 +1,33 @@
+class Base
+{
+    int value := 10;
+    int compute() { return value; }
+    string label() { return "base"; }
+}
+
+class Mid extends Base
+{
+    int extra := 5;
+    int compute() { return value + extra; }
+    string label() { return "mid"; }
+}
+
+class Leaf extends Mid
+{
+    int bonus := 3;
+    int compute() { return value + extra + bonus; }
+    string label() { return "leaf"; }
+}
+
+void main()
+{
+    Base b := new Base;
+    Base m := new Mid;
+    Base l := new Leaf;
+    PrintInt(b.compute());
+    PrintInt(m.compute());
+    PrintInt(l.compute());
+    PrintString(b.label());
+    PrintString(m.label());
+    PrintString(l.label());
+}

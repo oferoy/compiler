@@ -1,0 +1,9 @@
+void main()
+{
+    string a := "";
+    string b := "";
+    string c := a + b;
+    PrintInt(a = b);
+    PrintString(c);
+    PrintString(a + "hi");
+}

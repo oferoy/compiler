@@ -1,0 +1,8 @@
+class Foo { int x; }
+
+void main()
+{
+    PrintString("before");
+    Foo f := nil;
+    int y := f.x;
+}

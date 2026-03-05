@@ -1,0 +1,8 @@
+int big := 32000;
+int bigger := big + big;
+
+void main()
+{
+    PrintInt(big);
+    PrintInt(bigger);
+}

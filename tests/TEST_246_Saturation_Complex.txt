@@ -1,0 +1,28 @@
+int safeAdd(int a, int b)
+{
+    return a + b;
+}
+
+int safeMul(int a, int b)
+{
+    return a * b;
+}
+
+void main()
+{
+    PrintInt(safeAdd(32767, 1));
+    PrintInt(safeAdd(32767, 32767));
+    PrintInt(safeMul(200, 200));
+    int neg := 0 - 32767 - 1;
+    PrintInt(neg);
+    PrintInt(neg - 1);
+    PrintInt(neg - 32767);
+    int x := 32767;
+    x := x + 100;
+    PrintInt(x);
+    x := 0 - 32767 - 1;
+    x := x - 100;
+    PrintInt(x);
+    PrintInt(safeMul(32767, 2));
+    PrintInt(safeMul(0 - 32767 - 1, 2));
+}

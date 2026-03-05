@@ -1,0 +1,19 @@
+int counter := 0;
+
+int nextId()
+{
+    counter := counter + 1;
+    return counter;
+}
+
+int a := nextId();
+int b := nextId();
+int c := nextId();
+
+void main()
+{
+    PrintInt(a);
+    PrintInt(b);
+    PrintInt(c);
+    PrintInt(counter);
+}

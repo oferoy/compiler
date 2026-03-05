@@ -118,18 +118,7 @@ everything: all
 	@echo "\n"
 	@echo "*****************************"
 	@echo "*                           *"
-	@echo "*                           *"
 	@echo "* [6] Run resulting program *"
-	@echo "*                           *"
-	@echo "*                           *"
 	@echo "*****************************"
-	java -jar COMPILER ${INPUT} ${OUTPUT}
-	@echo "\n"
-	@echo "****************************************"
-	@echo "*                                      *"
-	@echo "*                                      *"
-	@echo "* [7] Run spim and redirect its output *"
-	@echo "*                                      *"
-	@echo "*                                      *"
-	@echo "****************************************"
-	spim -f ${OUTPUT_DIR}/mips.txt > ${OUTPUT_DIR}/MIPS_OUTPUT.txt
+	java -jar COMPILER ${INPUT} ${OUTPUT} && \
+	(echo ""; echo "* [7] Run spim *"; spim -f ${OUTPUT_DIR}/mips.txt > ${OUTPUT_DIR}/MIPS_OUTPUT.txt)

@@ -1,0 +1,14 @@
+class Calculator {
+    int val;
+    int add(int x){ val := val + x; return val; }
+    int sub(int x){ val := val - x; return val; }
+}
+
+void main()
+{
+    Calculator c := new Calculator;
+    c.val := 100;
+    PrintInt(c.add(50));
+    PrintInt(c.sub(30));
+    PrintInt(c.val);
+}

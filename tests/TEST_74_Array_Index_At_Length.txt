@@ -1,0 +1,7 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[3];
+    a[3] := 99;
+}

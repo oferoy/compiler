@@ -1,0 +1,11 @@
+class Point { int x; int y; }
+Point p := nil;
+
+void main()
+{
+    p := new Point;
+    p.x := 3;
+    p.y := 4;
+    PrintInt(p.x);
+    PrintInt(p.y);
+}

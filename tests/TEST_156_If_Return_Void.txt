@@ -1,0 +1,18 @@
+void printIfPositive(int x)
+{
+    if (x < 1)
+    {
+        return;
+    }
+    PrintInt(x);
+}
+
+void main()
+{
+    printIfPositive(5);
+    printIfPositive(0);
+    printIfPositive(0 - 3);
+    printIfPositive(10);
+    printIfPositive(0 - 1);
+    printIfPositive(1);
+}

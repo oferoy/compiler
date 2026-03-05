@@ -1,0 +1,27 @@
+array StringArr = string[];
+
+void main()
+{
+    StringArr words := new string[5];
+    words[0] := "alpha";
+    words[1] := "beta";
+    words[2] := "gamma";
+    words[3] := "delta";
+    words[4] := "epsilon";
+    int i := 0;
+    while (i < 5)
+    {
+        PrintString(words[i]);
+        i := i + 1;
+    }
+    string combined := "";
+    i := 0;
+    while (i < 5)
+    {
+        combined := combined + words[i];
+        i := i + 1;
+    }
+    PrintString(combined);
+    PrintInt(words[0] = words[1]);
+    PrintInt(words[0] = "alpha");
+}

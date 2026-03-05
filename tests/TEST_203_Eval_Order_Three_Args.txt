@@ -1,0 +1,20 @@
+int g := 0;
+
+int bump(int amount)
+{
+    g := g + amount;
+    return g;
+}
+
+int process(int a, int b, int c)
+{
+    return a + b + c;
+}
+
+void main()
+{
+    g := 0;
+    int r := process(bump(1), bump(10), bump(100));
+    PrintInt(r);
+    PrintInt(g);
+}

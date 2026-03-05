@@ -1,0 +1,13 @@
+class Foo {
+    int x := 42;
+    int y := 100;
+    string s := "hi";
+}
+
+void main()
+{
+    Foo f := new Foo;
+    PrintInt(f.x);
+    PrintInt(f.y);
+    PrintString(f.s);
+}

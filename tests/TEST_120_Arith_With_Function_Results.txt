@@ -1,0 +1,27 @@
+int double(int x)
+{
+    return x + x;
+}
+
+int triple(int x)
+{
+    return x + x + x;
+}
+
+int square(int x)
+{
+    return x * x;
+}
+
+void main()
+{
+    PrintInt(double(5));
+    PrintInt(triple(5));
+    PrintInt(square(5));
+    PrintInt(double(16000));
+    PrintInt(triple(11000));
+    PrintInt(square(200));
+    PrintInt(double(5) + triple(5));
+    PrintInt(square(double(3)));
+    PrintInt(double(square(3)));
+}

@@ -1,0 +1,65 @@
+class Drawable
+{
+    string draw() { return "nothing"; }
+    int priority() { return 0; }
+}
+
+class Text extends Drawable
+{
+    string content := "hello";
+    string draw() { return content; }
+    int priority() { return 1; }
+}
+
+class Icon extends Drawable
+{
+    int size := 16;
+    string draw() { return "icon"; }
+    int priority() { return 2; }
+}
+
+class Button extends Drawable
+{
+    string label := "click";
+    string draw() { return label; }
+    int priority() { return 3; }
+}
+
+array DrawArr = Drawable[];
+
+int findMaxPriority(DrawArr items, int n)
+{
+    int maxP := 0;
+    int i := 0;
+    while (i < n)
+    {
+        if (items[i].priority() > maxP)
+        {
+            maxP := items[i].priority();
+        }
+        i := i + 1;
+    }
+    return maxP;
+}
+
+void main()
+{
+    DrawArr ui := new Drawable[3];
+    Text t := new Text;
+    t.content := "greeting";
+    Icon ic := new Icon;
+    ic.size := 32;
+    Button bt := new Button;
+    bt.label := "submit";
+    ui[0] := t;
+    ui[1] := ic;
+    ui[2] := bt;
+    int i := 0;
+    while (i < 3)
+    {
+        PrintString(ui[i].draw());
+        PrintInt(ui[i].priority());
+        i := i + 1;
+    }
+    PrintInt(findMaxPriority(ui, 3));
+}

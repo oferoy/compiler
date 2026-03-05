@@ -1,0 +1,21 @@
+array StringArr = string[];
+
+void main()
+{
+    StringArr arr := new string[5];
+    arr[0] := "alpha";
+    arr[1] := "beta";
+    arr[2] := "gamma";
+    arr[3] := "delta";
+    arr[4] := "epsilon";
+    int i := 0;
+    while (i < 5)
+    {
+        PrintString(arr[i]);
+        i := i + 1;
+    }
+    PrintInt(arr[0] = "alpha");
+    PrintInt(arr[1] = arr[2]);
+    arr[0] := arr[0] + arr[1];
+    PrintString(arr[0]);
+}

@@ -1,0 +1,21 @@
+class Widget {
+    int id;
+}
+
+void main()
+{
+    Widget a := new Widget;
+    Widget b := new Widget;
+    Widget c := a;
+    a.id := 1;
+    b.id := 2;
+    PrintInt(a = b);
+    PrintInt(a = c);
+    PrintInt(a = nil);
+    PrintInt(b = nil);
+    Widget d := nil;
+    PrintInt(d = nil);
+    PrintInt(d = a);
+    c.id := 99;
+    PrintInt(a.id);
+}

@@ -1,0 +1,12 @@
+void main()
+{
+    int i := 5;
+    
+    while (i)
+    {
+        PrintInt(i);
+        i := i - 1;
+    }
+    
+    PrintInt(100);
+}

@@ -1,0 +1,42 @@
+class Point {
+    int x;
+    int y;
+    int dist() { return x * x + y * y; }
+}
+
+array PointArr = Point[];
+
+int closest(PointArr pts, int n)
+{
+    int minDist := pts[0].dist();
+    int minIdx := 0;
+    int i := 1;
+    while (i < n)
+    {
+        if (pts[i].dist() < minDist)
+        {
+            minDist := pts[i].dist();
+            minIdx := i;
+        }
+        i := i + 1;
+    }
+    return minIdx;
+}
+
+void main()
+{
+    PointArr pts := new Point[3];
+    pts[0] := new Point;
+    pts[0].x := 3;
+    pts[0].y := 4;
+    pts[1] := new Point;
+    pts[1].x := 1;
+    pts[1].y := 1;
+    pts[2] := new Point;
+    pts[2].x := 5;
+    pts[2].y := 0;
+    int c := closest(pts, 3);
+    PrintInt(c);
+    PrintInt(pts[c].x);
+    PrintInt(pts[c].y);
+}

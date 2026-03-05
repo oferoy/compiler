@@ -1,0 +1,34 @@
+class A {
+    int x := 1;
+    int getVal() { return x; }
+}
+class B extends A {
+    int y := 2;
+    int getVal() { return x + y; }
+}
+class C extends B {
+    int z := 3;
+    int getVal() { return x + y + z; }
+}
+class D extends C {
+    int w := 4;
+    int getVal() { return x + y + z + w; }
+}
+class E extends D {
+    int v := 5;
+    int getVal() { return x + y + z + w + v; }
+}
+
+void main()
+{
+    E e := new E;
+    PrintInt(e.getVal());
+    A ae := e;
+    PrintInt(ae.getVal());
+    D de := new D;
+    PrintInt(de.getVal());
+    A ad := de;
+    PrintInt(ad.getVal());
+    B be := e;
+    PrintInt(be.getVal());
+}

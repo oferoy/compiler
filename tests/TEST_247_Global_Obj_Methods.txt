@@ -1,0 +1,31 @@
+class Registry
+{
+    int count := 0;
+    string last := "none";
+
+    int register(string name)
+    {
+        count := count + 1;
+        last := name;
+        return count;
+    }
+
+    int getCount() { return count; }
+    string getLast() { return last; }
+}
+
+Registry reg := new Registry;
+
+int idA := reg.register("Alice");
+int idB := reg.register("Bob");
+
+void main()
+{
+    PrintInt(idA);
+    PrintInt(idB);
+    PrintInt(reg.getCount());
+    PrintString(reg.getLast());
+    int idC := reg.register("Carol");
+    PrintInt(idC);
+    PrintString(reg.getLast());
+}

@@ -1,0 +1,18 @@
+int compute(int a, int b)
+{
+    return a * b + a - b;
+}
+
+int x := 3;
+int y := 7;
+int z := compute(x, y);
+int w := compute(z, x);
+
+void main()
+{
+    PrintInt(x);
+    PrintInt(y);
+    PrintInt(z);
+    PrintInt(w);
+    PrintInt(compute(w, z));
+}

@@ -1,0 +1,13 @@
+int classify(int n)
+{
+    if (n < 0) { return 0 - 1; }
+    if (n = 0) { return 0; }
+    return 1;
+}
+
+void main()
+{
+    PrintInt(classify(0 - 5));
+    PrintInt(classify(0));
+    PrintInt(classify(5));
+}

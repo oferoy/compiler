@@ -1,0 +1,18 @@
+class Chain
+{
+    Chain next := nil;
+    int val;
+
+    int getVal()
+    {
+        return val;
+    }
+}
+
+void main()
+{
+    Chain a := new Chain;
+    a.val := 1;
+    PrintInt(a.getVal());
+    PrintInt(a.next.getVal());
+}

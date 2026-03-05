@@ -1,0 +1,16 @@
+void main()
+{
+    string a := "abc";
+    string b := "abc";
+    string c := "ab";
+    string d := "abcd";
+    string e := "";
+    string f := "";
+    PrintInt(a = b);
+    PrintInt(a = c);
+    PrintInt(a = d);
+    PrintInt(c = d);
+    PrintInt(e = f);
+    PrintInt(e = a);
+    PrintInt(a = a);
+}

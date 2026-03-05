@@ -1,0 +1,4 @@
+void main()
+{
+    int my_var := 5;
+}

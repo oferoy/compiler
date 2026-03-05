@@ -1,0 +1,13 @@
+void main()
+{
+    PrintInt(7 / 2);
+    PrintInt(1 / 3);
+    PrintInt(100 / 7);
+    PrintInt(32767 / 2);
+    PrintInt((0 - 32767 - 1) / 2);
+    PrintInt(5 / 5);
+    PrintInt(0 / 1);
+    PrintInt((0 - 1) / 2);
+    PrintInt(3 / (0 - 2));
+    PrintInt((0 - 7) / (0 - 3));
+}

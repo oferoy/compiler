@@ -1,0 +1,33 @@
+int classify(int a, int b, int c, int d, int e)
+{
+    if (a > b)
+    {
+        if (c > d)
+        {
+            if (e > 0)
+            {
+                return a + c + e;
+            }
+            return a + c;
+        }
+        return a + d + e;
+    }
+    if (b > c)
+    {
+        if (d > e)
+        {
+            return b + d;
+        }
+        return b + e;
+    }
+    return c + d + e;
+}
+
+void main()
+{
+    PrintInt(classify(10, 5, 8, 3, 1));
+    PrintInt(classify(1, 10, 5, 8, 3));
+    PrintInt(classify(1, 2, 10, 8, 3));
+    PrintInt(classify(1, 2, 10, 3, 8));
+    PrintInt(classify(5, 3, 2, 1, 0));
+}

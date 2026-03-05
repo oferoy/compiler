@@ -1,0 +1,35 @@
+int counter := 0;
+
+void tick()
+{
+    counter := counter + 1;
+}
+
+void tickN(int n)
+{
+    int i := 0;
+    while (i < n)
+    {
+        tick();
+        i := i + 1;
+    }
+}
+
+void reset()
+{
+    counter := 0;
+}
+
+void main()
+{
+    tick();
+    tick();
+    tick();
+    PrintInt(counter);
+    tickN(7);
+    PrintInt(counter);
+    reset();
+    PrintInt(counter);
+    tickN(100);
+    PrintInt(counter);
+}

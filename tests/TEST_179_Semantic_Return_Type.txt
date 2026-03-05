@@ -1,0 +1,9 @@
+int getValue()
+{
+    return "hello";
+}
+
+void main()
+{
+    int x := getValue();
+}

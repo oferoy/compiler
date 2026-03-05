@@ -1,0 +1,23 @@
+array IntArray = int[];
+
+void main()
+{
+    IntArray big := new int[100];
+    
+    int i := 0;
+    while (i < 100)
+    {
+        big[i] := i;
+        i := i + 1;
+    }
+    
+    int sum := 0;
+    i := 0;
+    while (i < 100)
+    {
+        sum := sum + big[i];
+        i := i + 1;
+    }
+    
+    PrintInt(sum);
+}

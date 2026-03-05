@@ -1,0 +1,26 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[3];
+    IntArr b := new int[3];
+    IntArr c := new int[3];
+    IntArr d := new int[3];
+    int i := 0;
+    while (i < 3)
+    {
+        a[i] := i + 1;
+        b[i] := (i + 1) * 2;
+        c[i] := (i + 1) * 3;
+        d[i] := (i + 1) * 4;
+        i := i + 1;
+    }
+    int total := 0;
+    i := 0;
+    while (i < 3)
+    {
+        total := total + a[i] + b[i] + c[i] + d[i];
+        i := i + 1;
+    }
+    PrintInt(total);
+}

@@ -24,7 +24,7 @@ public class SymbolTableEntry
 	public String name;
 
 	/******************/
-	/* TYPE value ... */
+	/* Type value ... */
 	/******************/
 	public Type type;
 

@@ -1,0 +1,10 @@
+void main()
+{
+    PrintString("a");
+    PrintInt(1);
+    PrintString("b");
+    PrintInt(2);
+    PrintString("c");
+    PrintInt(3);
+    PrintString("end");
+}

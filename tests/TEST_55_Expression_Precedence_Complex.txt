@@ -1,0 +1,10 @@
+void main()
+{
+    PrintInt(2 + 3 * 4 - 5);
+    PrintInt(10 - 2 * 3 + 4);
+    PrintInt(20 / 4 + 6 * 2 - 8);
+    PrintInt(1 + 2 + 3 + 4 + 5);
+    PrintInt(100 - 50 - 25);
+    PrintInt(2 * 3 * 4);
+    PrintInt(24 / 2 / 3);
+}

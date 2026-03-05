@@ -1,0 +1,20 @@
+int recurse(int n)
+{
+    int a := n;
+    int b := n + 1;
+    int c := n * 2;
+    int d := a + b + c;
+    if (n < 2)
+    {
+        return d;
+    }
+    int sub := recurse(n - 1);
+    return d + sub;
+}
+
+void main()
+{
+    PrintInt(recurse(5));
+    PrintInt(recurse(1));
+    PrintInt(recurse(3));
+}

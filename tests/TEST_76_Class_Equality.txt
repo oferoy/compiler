@@ -1,0 +1,11 @@
+class Foo { int x; }
+
+void main()
+{
+    Foo a := new Foo;
+    Foo b := a;
+    Foo c := new Foo;
+    PrintInt(a = b);
+    PrintInt(a = c);
+    PrintInt(a = nil);
+}

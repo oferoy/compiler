@@ -1,0 +1,29 @@
+class Animal {
+    string species := "unknown";
+    string sound := "silent";
+    string describe()
+    {
+        return species + sound;
+    }
+}
+
+class Dog extends Animal {
+    string describe()
+    {
+        return "dog" + sound;
+    }
+}
+
+void main()
+{
+    Animal a := new Animal;
+    PrintString(a.describe());
+    a.species := "cat";
+    a.sound := "meow";
+    PrintString(a.describe());
+    Dog d := new Dog;
+    d.sound := "woof";
+    PrintString(d.describe());
+    Animal ad := d;
+    PrintString(ad.describe());
+}

@@ -1,0 +1,38 @@
+class Vehicle
+{
+    int wheels := 4;
+    int weight := 1000;
+    string brand := "generic";
+}
+
+class Car extends Vehicle
+{
+    int doors := 4;
+    int passengers := 5;
+}
+
+class Truck extends Vehicle
+{
+    int payload := 5000;
+    int axles := 3;
+}
+
+void main()
+{
+    Car c := new Car;
+    c.brand := "sedan";
+    c.weight := 1500;
+    PrintInt(c.wheels);
+    PrintInt(c.weight);
+    PrintString(c.brand);
+    PrintInt(c.doors);
+    PrintInt(c.passengers);
+    Truck t := new Truck;
+    t.brand := "hauler";
+    t.wheels := 6;
+    PrintInt(t.wheels);
+    PrintInt(t.weight);
+    PrintString(t.brand);
+    PrintInt(t.payload);
+    PrintInt(t.axles);
+}

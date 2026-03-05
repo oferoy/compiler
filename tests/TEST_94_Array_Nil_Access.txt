@@ -1,0 +1,7 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := nil;
+    a[0] := 5;
+}

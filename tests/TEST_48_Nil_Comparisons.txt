@@ -1,0 +1,17 @@
+class Node
+{
+    int value := 0;
+}
+
+void main()
+{
+    Node n1 := nil;
+    Node n2 := nil;
+    Node n3 := new Node;
+    
+    PrintInt(n1 = nil);
+    PrintInt(n2 = nil);
+    PrintInt(n3 = nil);
+    PrintInt(n1 = n2);
+    PrintInt(n1 = n3);
+}

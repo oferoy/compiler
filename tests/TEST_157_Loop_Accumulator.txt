@@ -1,0 +1,28 @@
+void main()
+{
+    int sum := 0;
+    int prod := 1;
+    int i := 1;
+    while (i < 8)
+    {
+        sum := sum + i;
+        prod := prod * i;
+        i := i + 1;
+    }
+    PrintInt(sum);
+    PrintInt(prod);
+
+    int altSum := 0;
+    i := 1;
+    while (i < 11)
+    {
+        int sign := 1;
+        if (i / 2 * 2 = i)
+        {
+            sign := 0 - 1;
+        }
+        altSum := altSum + sign * i;
+        i := i + 1;
+    }
+    PrintInt(altSum);
+}

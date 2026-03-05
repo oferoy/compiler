@@ -1,0 +1,13 @@
+void main()
+{
+    string a := "foo";
+    string b := "bar";
+    string c := a + b;
+    string d := "foobar";
+    PrintInt(c = d);
+    string e := "foo" + "bar";
+    PrintInt(e = d);
+    PrintInt(c = e);
+    string f := "" + "foobar";
+    PrintInt(f = d);
+}

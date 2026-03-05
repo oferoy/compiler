@@ -1,0 +1,12 @@
+void main()
+{
+    int max := 32767;
+    int one := 1;
+    PrintInt(max + one);
+    PrintInt(max - one);
+    int min := 0 - 32767 - 1;
+    PrintInt(min + one);
+    PrintInt(min - one);
+    PrintInt(max + 0);
+    PrintInt(min + 0);
+}

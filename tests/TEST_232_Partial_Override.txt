@@ -1,0 +1,29 @@
+class Animal
+{
+    int legs() { return 4; }
+    string sound() { return "silence"; }
+    int speed() { return 0; }
+}
+
+class Dog extends Animal
+{
+    string sound() { return "bark"; }
+    int speed() { return 30; }
+}
+
+class Cat extends Animal
+{
+    string sound() { return "meow"; }
+}
+
+void main()
+{
+    Animal a := new Dog;
+    PrintInt(a.legs());
+    PrintString(a.sound());
+    PrintInt(a.speed());
+    Animal b := new Cat;
+    PrintInt(b.legs());
+    PrintString(b.sound());
+    PrintInt(b.speed());
+}

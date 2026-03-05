@@ -1,0 +1,12 @@
+void main()
+{
+    int neg := -100;
+    
+    PrintInt(neg + 50);
+    PrintInt(neg - 50);
+    PrintInt(neg * 2);
+    PrintInt(neg / 2);
+    PrintInt(neg * -1);
+    PrintInt(-5 + -3);
+    PrintInt(-10 - -5);
+}

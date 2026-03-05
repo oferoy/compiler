@@ -1,0 +1,20 @@
+array IntArray = int[];
+
+class Node
+{
+    int value := 0;
+}
+
+void main()
+{
+    IntArray arr := new int[5];
+    Node n := new Node;
+    
+    arr[0] := 10;
+    n.value := 20;
+    
+    PrintInt(arr[0]);
+    PrintInt(n.value);
+    
+    int bad := arr[10];
+}

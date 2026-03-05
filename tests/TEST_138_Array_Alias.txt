@@ -1,0 +1,15 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[3];
+    a[0] := 1;
+    a[1] := 2;
+    a[2] := 3;
+    IntArr b := a;
+    PrintInt(a = b);
+    b[0] := 99;
+    PrintInt(a[0]);
+    PrintInt(b[0]);
+    PrintInt(a[1]);
+}

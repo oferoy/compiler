@@ -1,0 +1,14 @@
+void main()
+{
+    int big := 32767;
+    int small := -32768;
+
+    PrintInt(big + big);
+    PrintInt(small + small);
+    PrintInt(big * big);
+    PrintInt(small * small);
+    PrintInt(big - small);
+    PrintInt(small - big);
+    PrintInt(big + 1);
+    PrintInt(small - 1);
+}

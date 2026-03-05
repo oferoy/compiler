@@ -1,0 +1,36 @@
+void main()
+{
+    int a := 5;
+    int b := 10;
+    int c := 15;
+    if (a < b)
+    {
+        PrintInt(1);
+    }
+    if (a < b = 0)
+    {
+        PrintInt(2);
+    }
+    if ((a + b) = c)
+    {
+        PrintInt(3);
+    }
+    if (a * b < c * c)
+    {
+        PrintInt(4);
+    }
+    if ((a < b) + (b < c))
+    {
+        PrintInt(5);
+    }
+    if (a = 5)
+    {
+        if (b = 10)
+        {
+            if (c = 15)
+            {
+                PrintInt(6);
+            }
+        }
+    }
+}

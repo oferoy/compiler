@@ -1,0 +1,65 @@
+class Account
+{
+    int balance := 0;
+    string owner := "anon";
+
+    int deposit(int amount)
+    {
+        balance := balance + amount;
+        return balance;
+    }
+
+    int withdraw(int amount)
+    {
+        if (amount > balance)
+        {
+            return 0 - 1;
+        }
+        balance := balance - amount;
+        return balance;
+    }
+
+    int getBalance() { return balance; }
+}
+
+class SavingsAccount extends Account
+{
+    int interest := 5;
+
+    int addInterest()
+    {
+        int earned := balance * interest / 100;
+        balance := balance + earned;
+        return earned;
+    }
+}
+
+void transfer(Account from, Account to, int amount)
+{
+    int result := from.withdraw(amount);
+    if (result = (0 - 1) = 0)
+    {
+        to.deposit(amount);
+    }
+}
+
+void main()
+{
+    SavingsAccount alice := new SavingsAccount;
+    alice.owner := "Alice";
+    alice.deposit(1000);
+    Account bob := new Account;
+    bob.owner := "Bob";
+    bob.deposit(500);
+    PrintInt(alice.getBalance());
+    PrintInt(bob.getBalance());
+    transfer(alice, bob, 300);
+    PrintInt(alice.getBalance());
+    PrintInt(bob.getBalance());
+    int earned := alice.addInterest();
+    PrintInt(earned);
+    PrintInt(alice.getBalance());
+    int fail := bob.withdraw(2000);
+    PrintInt(fail);
+    PrintInt(bob.getBalance());
+}

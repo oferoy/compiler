@@ -1,0 +1,156 @@
+class Animal {
+    string name := "unknown";
+    int score(){ return 0; }
+    string speak(){ return "silent"; }
+}
+
+class Cat extends Animal {
+    int lives := 9;
+    int score(){ return lives * 1000; }
+    string speak(){ return "meow"; }
+}
+
+class Dog extends Animal {
+    int tricks := 0;
+    int score(){ return tricks * 500 + 100; }
+    string speak(){ return "woof"; }
+}
+
+class Bird extends Animal {
+    int wingspan := 1;
+    int score(){ return wingspan * wingspan; }
+    string speak(){ return "tweet"; }
+}
+
+array AnimalArr = Animal[];
+array IntArr = int[];
+
+class ScoreNode {
+    int val;
+    string who;
+    ScoreNode next := nil;
+}
+
+int gcount := 0;
+
+int bump()
+{
+    gcount := gcount + 1;
+    return gcount;
+}
+
+ScoreNode insertSorted(ScoreNode head, int val, string who)
+{
+    ScoreNode n := new ScoreNode;
+    n.val := val;
+    n.who := who;
+    if (head = nil) { return n; }
+    if (val < head.val)
+    {
+        n.next := head;
+        return n;
+    }
+    ScoreNode cur := head;
+    while (cur.next = nil = 0)
+    {
+        if (val < cur.next.val)
+        {
+            n.next := cur.next;
+            cur.next := n;
+            return head;
+        }
+        cur := cur.next;
+    }
+    cur.next := n;
+    return head;
+}
+
+int sumScores(ScoreNode n)
+{
+    if (n = nil) { return 0; }
+    return n.val + sumScores(n.next);
+}
+
+void main()
+{
+    Cat c := new Cat;
+    c.name := "Felix";
+    c.lives := 7;
+
+    Dog d := new Dog;
+    d.name := "Rex";
+    d.tricks := 12;
+
+    Bird b := new Bird;
+    b.name := "Tweety";
+    b.wingspan := 15;
+
+    AnimalArr zoo := new Animal[3];
+    zoo[0] := c;
+    zoo[1] := d;
+    zoo[2] := b;
+
+    int i := 0;
+    while (i < 3)
+    {
+        PrintString(zoo[i].speak());
+        i := i + 1;
+    }
+
+    PrintString(zoo[0].name);
+
+    int x := bump() + bump() * 10;
+    PrintInt(x);
+    PrintInt(gcount);
+
+    ScoreNode head := nil;
+    i := 0;
+    while (i < 3)
+    {
+        head := insertSorted(head, zoo[i].score(), zoo[i].name);
+        i := i + 1;
+    }
+
+    PrintInt(sumScores(head));
+
+    int sat := 32767;
+    sat := sat + zoo[0].score();
+    PrintInt(sat);
+
+    int neg := 0 - 32767 - 1;
+    neg := neg - zoo[1].score();
+    PrintInt(neg);
+
+    string sone := c.speak();
+    string stwo := "meow";
+    PrintInt(sone = stwo);
+    PrintInt(sone = d.speak());
+
+    string greeting := sone + d.speak();
+    PrintString(greeting);
+
+    AnimalArr ztwo := zoo;
+    PrintInt(zoo = ztwo);
+    PrintInt(zoo = nil);
+
+    IntArr empty := new int[0];
+    PrintInt(empty = nil);
+
+    PrintInt(13325 / 3);
+
+    int total := 0;
+    i := 0;
+    while (i < 10)
+    {
+        if (i * i > 50)
+        {
+            total := total + i;
+        }
+        i := i + 1;
+    }
+    PrintInt(total);
+
+    Animal maybe := nil;
+    if (1) { maybe := zoo[2]; }
+    PrintInt(maybe.score());
+}

@@ -1,0 +1,16 @@
+array IntArray = int[];
+
+int x := 5;
+IntArray globalArr := nil;
+
+void main()
+{
+    globalArr := new int[3];
+    globalArr[0] := x;
+    globalArr[1] := x * 2;
+    globalArr[2] := x * 3;
+    
+    PrintInt(globalArr[0]);
+    PrintInt(globalArr[1]);
+    PrintInt(globalArr[2]);
+}

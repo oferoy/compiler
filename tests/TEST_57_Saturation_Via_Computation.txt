@@ -1,0 +1,7 @@
+void main()
+{
+    int x := 0 - 32767 - 1;
+    PrintInt(x);
+    int y := 32767 + 1;
+    PrintInt(y);
+}

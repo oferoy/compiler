@@ -1,0 +1,10 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr arr := new int[5];
+    arr[0] := 10;
+    PrintInt(arr[0]);
+    int idx := 0 - 1;
+    PrintInt(arr[idx]);
+}

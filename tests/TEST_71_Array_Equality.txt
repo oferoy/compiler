@@ -1,0 +1,10 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[3];
+    IntArr b := a;
+    IntArr c := new int[3];
+    PrintInt(a = b);
+    PrintInt(a = c);
+}

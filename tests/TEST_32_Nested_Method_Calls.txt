@@ -1,0 +1,15 @@
+class Math
+{
+    int add(int a, int b) { return a + b; }
+    int mul(int a, int b) { return a * b; }
+    int sub(int a, int b) { return a - b; }
+}
+
+void main()
+{
+    Math m := new Math;
+    
+    PrintInt(m.add(m.mul(2, 3), m.sub(10, 5)));
+    PrintInt(m.mul(m.add(1, 2), m.add(3, 4)));
+    PrintInt(m.sub(m.mul(m.add(1, 1), 5), 3));
+}

@@ -1,0 +1,26 @@
+void main()
+{
+    int x := 1;
+    int y := 2;
+    int z := 3;
+    int w := 4;
+    int v := 5;
+
+    int r1 := x + y + z + w + v;
+    int r2 := x * y + z * w + v;
+    int r3 := (x + y) * (z + w) + v * x;
+    int r4 := r1 + r2 + r3;
+    int r5 := r4 * 2 - r1;
+    int r6 := r5 / 3 + r2;
+    int r7 := (r3 + r6) * (r1 - x);
+    int r8 := r7 - r4 + r5;
+
+    PrintInt(r1);
+    PrintInt(r2);
+    PrintInt(r3);
+    PrintInt(r4);
+    PrintInt(r5);
+    PrintInt(r6);
+    PrintInt(r7);
+    PrintInt(r8);
+}

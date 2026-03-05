@@ -1,0 +1,72 @@
+class TreeNode
+{
+    int val;
+    TreeNode left := nil;
+    TreeNode right := nil;
+}
+
+TreeNode makeNode(int v)
+{
+    TreeNode n := new TreeNode;
+    n.val := v;
+    return n;
+}
+
+void insert(TreeNode root, int v)
+{
+    if (v < root.val)
+    {
+        if (root.left = nil)
+        {
+            root.left := makeNode(v);
+        }
+        if (root.left = nil = 0)
+        {
+            insert(root.left, v);
+        }
+    }
+    if (v < root.val = 0)
+    {
+        if (root.right = nil)
+        {
+            root.right := makeNode(v);
+        }
+        if (root.right = nil = 0)
+        {
+            insert(root.right, v);
+        }
+    }
+}
+
+void inorder(TreeNode node)
+{
+    if (node = nil)
+    {
+        return;
+    }
+    inorder(node.left);
+    PrintInt(node.val);
+    inorder(node.right);
+}
+
+int treeSum(TreeNode node)
+{
+    if (node = nil)
+    {
+        return 0;
+    }
+    return node.val + treeSum(node.left) + treeSum(node.right);
+}
+
+void main()
+{
+    TreeNode root := makeNode(50);
+    insert(root, 30);
+    insert(root, 70);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 60);
+    insert(root, 80);
+    inorder(root);
+    PrintInt(treeSum(root));
+}

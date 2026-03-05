@@ -1,0 +1,13 @@
+class A { int speak(){ return 1; } }
+class B extends A { int speak(){ return 2; } }
+class C extends B { int speak(){ return 3; } }
+
+void main()
+{
+    A a := new A;
+    A b := new B;
+    A c := new C;
+    PrintInt(a.speak());
+    PrintInt(b.speak());
+    PrintInt(c.speak());
+}

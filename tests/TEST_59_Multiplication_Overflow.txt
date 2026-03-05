@@ -1,0 +1,10 @@
+void main()
+{
+    PrintInt(32767 * 2);
+    PrintInt(32767 * 32767);
+    PrintInt(32767 * 0);
+    PrintInt(1 * 32767);
+    int neg := 0 - 32767;
+    PrintInt(neg * 2);
+    PrintInt(neg * neg);
+}

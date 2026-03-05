@@ -1,0 +1,12 @@
+---
+description: How to work on this compiler project (remote run, when to edit)
+alwaysApply: true
+---
+
+# Project rules
+
+- **NEVER run anything yourself.** Do NOT run make, javac, java, spim, or any build/compile/run/test command. The user compiles and runs everything. Only suggest code changes or give instructions; the user executes.
+
+- **Prefer answering over editing when that’s what’s needed.** Don’t be over-eager with edits. If the user is asking a question or wants an explanation, answer rather than changing code unless they clearly want a change.
+
+- **When stuck or overanalyzing: add debugs and let the user run.** Do not guess. Add targeted debug output (stderr, MIPS comments, or runtime prints) so the user can run and report what actually happens; then fix based on that.

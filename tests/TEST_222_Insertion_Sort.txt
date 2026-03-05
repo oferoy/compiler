@@ -1,0 +1,43 @@
+array IntArr = int[];
+
+void insertionSort(IntArr arr, int n)
+{
+    int i := 1;
+    while (i < n)
+    {
+        int key := arr[i];
+        int j := i - 1;
+        while (j > 0 - 1)
+        {
+            if (arr[j] > key)
+            {
+                arr[j + 1] := arr[j];
+                j := j - 1;
+            }
+            if (arr[j] > key = 0)
+            {
+                j := 0 - 2;
+            }
+        }
+        arr[j + 1] := key;
+        i := i + 1;
+    }
+}
+
+void main()
+{
+    IntArr data := new int[6];
+    data[0] := 31;
+    data[1] := 41;
+    data[2] := 59;
+    data[3] := 26;
+    data[4] := 53;
+    data[5] := 58;
+    insertionSort(data, 6);
+    int i := 0;
+    while (i < 6)
+    {
+        PrintInt(data[i]);
+        i := i + 1;
+    }
+}

@@ -1,0 +1,11 @@
+int getZero()
+{
+    return 0;
+}
+
+void main()
+{
+    PrintString("start");
+    int x := 42 / getZero();
+    PrintInt(x);
+}

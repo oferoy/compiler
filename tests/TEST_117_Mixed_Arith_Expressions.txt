@@ -1,0 +1,14 @@
+int compute(int a, int b, int c)
+{
+    return a * b + c;
+}
+
+void main()
+{
+    PrintInt(compute(3, 4, 5));
+    PrintInt(compute(100, 100, 100));
+    PrintInt(compute(0, 32767, 1));
+    PrintInt(compute(1, 1, 0 - 1));
+    PrintInt(compute(200, 200, 0 - 32767 - 1));
+    PrintInt(compute(2, 3, 2 * 3));
+}

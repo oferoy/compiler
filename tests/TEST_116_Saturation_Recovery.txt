@@ -1,0 +1,17 @@
+void main()
+{
+    int x := 32767;
+    x := x + 100;
+    PrintInt(x);
+    x := x - 200;
+    PrintInt(x);
+    x := x + 200;
+    PrintInt(x);
+    int y := 0 - 32767 - 1;
+    y := y - 100;
+    PrintInt(y);
+    y := y + 200;
+    PrintInt(y);
+    y := y - 200;
+    PrintInt(y);
+}

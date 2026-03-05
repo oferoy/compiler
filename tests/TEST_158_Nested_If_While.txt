@@ -1,0 +1,33 @@
+array IntArr = int[];
+
+int countAbove(IntArr arr, int len, int threshold)
+{
+    int count := 0;
+    int i := 0;
+    while (i < len)
+    {
+        if (arr[i] > threshold)
+        {
+            count := count + 1;
+        }
+        i := i + 1;
+    }
+    return count;
+}
+
+void main()
+{
+    IntArr a := new int[8];
+    a[0] := 3;
+    a[1] := 7;
+    a[2] := 1;
+    a[3] := 9;
+    a[4] := 4;
+    a[5] := 6;
+    a[6] := 2;
+    a[7] := 8;
+    PrintInt(countAbove(a, 8, 5));
+    PrintInt(countAbove(a, 8, 0));
+    PrintInt(countAbove(a, 8, 9));
+    PrintInt(countAbove(a, 8, 3));
+}

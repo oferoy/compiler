@@ -1,0 +1,17 @@
+void main()
+{
+    int a := 100;
+    int b := 200;
+    int c := 300;
+    PrintInt(a - b);
+    PrintInt(b - c);
+    PrintInt(c - a);
+    PrintInt(a - b - c);
+    PrintInt(c - b - a);
+    int d := 0 - 32767 - 1;
+    PrintInt(d - 0);
+    PrintInt(0 - d);
+    int e := 32767;
+    PrintInt(e - (0 - 1));
+    PrintInt((0 - 32767 - 1) - 1);
+}

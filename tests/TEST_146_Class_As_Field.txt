@@ -1,0 +1,30 @@
+class Inner {
+    int val := 10;
+    int getVal() { return val; }
+}
+class Outer {
+    Inner inner := nil;
+    int getInnerVal()
+    {
+        return inner.getVal();
+    }
+}
+class Deep {
+    Outer outer := nil;
+    int getDeepVal()
+    {
+        return outer.getInnerVal();
+    }
+}
+
+void main()
+{
+    Deep d := new Deep;
+    d.outer := new Outer;
+    d.outer.inner := new Inner;
+    d.outer.inner.val := 42;
+    PrintInt(d.getDeepVal());
+    PrintInt(d.outer.getInnerVal());
+    PrintInt(d.outer.inner.getVal());
+    PrintInt(d.outer.inner.val);
+}

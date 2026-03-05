@@ -1,0 +1,14 @@
+int g := 0;
+
+int setG(int val)
+{
+    g := val;
+    return val;
+}
+
+void main()
+{
+    int r := setG(5) = setG(10);
+    PrintInt(r);
+    PrintInt(g);
+}

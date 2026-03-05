@@ -1,0 +1,21 @@
+void main()
+{
+    int i := 0;
+    int j := 100;
+    while (i < j)
+    {
+        i := i + 3;
+        j := j - 2;
+    }
+    PrintInt(i);
+    PrintInt(j);
+    int x := 1;
+    int count := 0;
+    while (x < 32000)
+    {
+        x := x * 2;
+        count := count + 1;
+    }
+    PrintInt(x);
+    PrintInt(count);
+}

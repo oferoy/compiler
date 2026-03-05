@@ -1,0 +1,23 @@
+array IntArr = int[];
+IntArr data := new int[5];
+
+void fillData()
+{
+    int i := 0;
+    while (i < 5)
+    {
+        data[i] := i * i;
+        i := i + 1;
+    }
+}
+
+void main()
+{
+    fillData();
+    int i := 0;
+    while (i < 5)
+    {
+        PrintInt(data[i]);
+        i := i + 1;
+    }
+}

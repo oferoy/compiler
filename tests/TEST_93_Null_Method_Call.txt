@@ -1,0 +1,7 @@
+class Foo { int bar(){ return 1; } }
+
+void main()
+{
+    Foo f := nil;
+    int x := f.bar();
+}

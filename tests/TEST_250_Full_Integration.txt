@@ -1,0 +1,143 @@
+array IntArr = int[];
+
+class Scoreboard
+{
+    IntArr scores;
+    int size := 0;
+    string title := "board";
+
+    void init(int cap)
+    {
+        scores := new int[cap];
+        size := 0;
+    }
+
+    void addScore(int s)
+    {
+        scores[size] := s;
+        size := size + 1;
+    }
+
+    int getMax()
+    {
+        int mx := scores[0];
+        int i := 1;
+        while (i < size)
+        {
+            if (scores[i] > mx)
+            {
+                mx := scores[i];
+            }
+            i := i + 1;
+        }
+        return mx;
+    }
+
+    int getMin()
+    {
+        int mn := scores[0];
+        int i := 1;
+        while (i < size)
+        {
+            if (scores[i] < mn)
+            {
+                mn := scores[i];
+            }
+            i := i + 1;
+        }
+        return mn;
+    }
+
+    int getAverage()
+    {
+        int total := 0;
+        int i := 0;
+        while (i < size)
+        {
+            total := total + scores[i];
+            i := i + 1;
+        }
+        return total / size;
+    }
+}
+
+class Player
+{
+    string name := "unnamed";
+    int id;
+    Scoreboard board;
+
+    void setup(string n, int i)
+    {
+        name := n;
+        id := i;
+        board := new Scoreboard;
+        board.init(10);
+        board.title := name;
+    }
+}
+
+array PlayerArr = Player[];
+
+int globalId := 0;
+
+int nextId()
+{
+    globalId := globalId + 1;
+    return globalId;
+}
+
+void main()
+{
+    PlayerArr team := new Player[3];
+    int i := 0;
+    while (i < 3)
+    {
+        team[i] := new Player;
+        i := i + 1;
+    }
+    team[0].setup("alpha", nextId());
+    team[1].setup("bravo", nextId());
+    team[2].setup("charlie", nextId());
+
+    team[0].board.addScore(85);
+    team[0].board.addScore(92);
+    team[0].board.addScore(78);
+
+    team[1].board.addScore(100);
+    team[1].board.addScore(65);
+    team[1].board.addScore(88);
+
+    team[2].board.addScore(70);
+    team[2].board.addScore(70);
+    team[2].board.addScore(70);
+
+    i := 0;
+    while (i < 3)
+    {
+        PrintString(team[i].name);
+        PrintInt(team[i].id);
+        PrintInt(team[i].board.getMax());
+        PrintInt(team[i].board.getMin());
+        PrintInt(team[i].board.getAverage());
+        i := i + 1;
+    }
+
+    int teamMax := 0;
+    i := 0;
+    while (i < 3)
+    {
+        int mx := team[i].board.getMax();
+        if (mx > teamMax)
+        {
+            teamMax := mx;
+        }
+        i := i + 1;
+    }
+    PrintInt(teamMax);
+
+    int sat := teamMax * 400;
+    PrintInt(sat);
+
+    PrintInt(team[0].board.scores[0] + team[1].board.scores[0] + team[2].board.scores[0]);
+}

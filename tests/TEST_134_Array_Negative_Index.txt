@@ -1,0 +1,9 @@
+array IntArr = int[];
+
+void main()
+{
+    IntArr a := new int[5];
+    a[0] := 1;
+    int idx := 0 - 1;
+    a[idx] := 99;
+}

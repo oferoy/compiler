@@ -1,0 +1,21 @@
+class Config
+{
+    int width := 100;
+    int height := 200;
+    string label := "default";
+}
+
+Config cfg := new Config;
+
+void main()
+{
+    PrintInt(cfg.width);
+    PrintInt(cfg.height);
+    PrintString(cfg.label);
+    cfg.width := 320;
+    cfg.height := 240;
+    cfg.label := "custom";
+    PrintInt(cfg.width);
+    PrintInt(cfg.height);
+    PrintString(cfg.label);
+}

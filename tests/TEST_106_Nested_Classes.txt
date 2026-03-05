@@ -1,0 +1,13 @@
+class Inner { int val; }
+class Outer {
+    Inner inner := nil;
+    int getVal(){ return inner.val; }
+}
+
+void main()
+{
+    Outer o := new Outer;
+    o.inner := new Inner;
+    o.inner.val := 77;
+    PrintInt(o.getVal());
+}

@@ -1,0 +1,12 @@
+void main()
+{
+    int a := 0 - 7;
+    int b := 2;
+    PrintInt(a / b);
+    int c := 7;
+    int d := 0 - 2;
+    PrintInt(c / d);
+    int e := 0 - 7;
+    int f := 0 - 2;
+    PrintInt(e / f);
+}

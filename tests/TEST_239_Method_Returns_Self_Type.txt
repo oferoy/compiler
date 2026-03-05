@@ -1,0 +1,35 @@
+class Builder
+{
+    int val := 0;
+    string name := "empty";
+
+    Builder setVal(int v)
+    {
+        val := v;
+        return nil;
+    }
+
+    int getVal() { return val; }
+    string getName() { return name; }
+}
+
+class SuperBuilder extends Builder
+{
+    int bonus := 100;
+
+    int getVal() { return val + bonus; }
+}
+
+void main()
+{
+    Builder b := new Builder;
+    b.val := 42;
+    b.name := "first";
+    PrintInt(b.getVal());
+    PrintString(b.getName());
+    Builder s := new SuperBuilder;
+    s.val := 10;
+    s.name := "super";
+    PrintInt(s.getVal());
+    PrintString(s.getName());
+}

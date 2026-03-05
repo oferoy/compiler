@@ -1,0 +1,19 @@
+int doubleIt(int x) { return x * 2; }
+int tripleIt(int x) { return x * 3; }
+int addTwo(int x) { return x + 2; }
+int square(int x) { return x * x; }
+
+void main()
+{
+    int a := 3;
+    int b := doubleIt(a) + tripleIt(a);
+    int c := addTwo(b) * square(a);
+    int d := doubleIt(c) - tripleIt(b);
+    int e := square(addTwo(a));
+    int f := tripleIt(doubleIt(addTwo(a)));
+    PrintInt(b);
+    PrintInt(c);
+    PrintInt(d);
+    PrintInt(e);
+    PrintInt(f);
+}

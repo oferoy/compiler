@@ -1,0 +1,31 @@
+class Base {
+    int x := 10;
+    int getX() { return x; }
+    void setX(int v) { x := v; }
+}
+
+class Child extends Base {
+    int y := 20;
+    int getSum() { return x + y; }
+}
+
+class GrandChild extends Child {
+    int z := 30;
+    int getAll() { return x + y + z; }
+    int getX() { return x * 2; }
+}
+
+void main()
+{
+    GrandChild gc := new GrandChild;
+    PrintInt(gc.getAll());
+    PrintInt(gc.getX());
+    gc.setX(100);
+    PrintInt(gc.getAll());
+    PrintInt(gc.getX());
+    Base bgc := gc;
+    PrintInt(bgc.getX());
+    Child cgc := gc;
+    PrintInt(cgc.getSum());
+    PrintInt(cgc.getX());
+}

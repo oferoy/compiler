@@ -1,0 +1,17 @@
+int power(int base, int exp)
+{
+    int result := 1;
+    while (exp > 0)
+    {
+        result := result * base;
+        exp := exp - 1;
+    }
+    return result;
+}
+
+void main()
+{
+    PrintInt(power(2, 10));
+    PrintInt(power(3, 5));
+    PrintInt(power(5, 0));
+}

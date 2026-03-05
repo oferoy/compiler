@@ -1,0 +1,11 @@
+void main()
+{
+    int x := 32767 + 100;
+    PrintInt(x);
+    x := x - 1;
+    PrintInt(x);
+    x := x + 1;
+    PrintInt(x);
+    x := x + 1;
+    PrintInt(x);
+}

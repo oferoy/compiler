@@ -1,0 +1,6 @@
+void main()
+{
+    PrintString("one");
+    PrintString("two");
+    PrintString("three");
+}

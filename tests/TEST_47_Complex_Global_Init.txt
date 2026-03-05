@@ -1,0 +1,14 @@
+int a := 2;
+int b := a + 3;
+int c := a * b;
+int d := c - b;
+int e := d / a;
+
+void main()
+{
+    PrintInt(a);
+    PrintInt(b);
+    PrintInt(c);
+    PrintInt(d);
+    PrintInt(e);
+}

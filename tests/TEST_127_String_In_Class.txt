@@ -1,0 +1,16 @@
+class Greeting {
+    string msg := "hi";
+    string getMsg() { return msg; }
+    void setMsg(string m) { msg := m; }
+}
+
+void main()
+{
+    Greeting g := new Greeting;
+    PrintString(g.getMsg());
+    g.setMsg("bye");
+    PrintString(g.getMsg());
+    PrintString(g.msg);
+    g.msg := g.msg + g.msg;
+    PrintString(g.msg);
+}

@@ -1,0 +1,62 @@
+class QNode
+{
+    int val;
+    QNode next := nil;
+}
+
+class Queue
+{
+    QNode head := nil;
+    QNode tail := nil;
+
+    void enqueue(int v)
+    {
+        QNode n := new QNode;
+        n.val := v;
+        if (tail = nil)
+        {
+            head := n;
+            tail := n;
+        }
+        if (tail = nil = 0)
+        {
+            if (tail = n = 0)
+            {
+                tail.next := n;
+                tail := n;
+            }
+        }
+    }
+
+    int dequeue()
+    {
+        int v := head.val;
+        head := head.next;
+        if (head = nil)
+        {
+            tail := nil;
+        }
+        return v;
+    }
+
+    int isEmpty()
+    {
+        return head = nil;
+    }
+}
+
+void main()
+{
+    Queue q := new Queue;
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    PrintInt(q.dequeue());
+    PrintInt(q.dequeue());
+    q.enqueue(40);
+    q.enqueue(50);
+    PrintInt(q.dequeue());
+    PrintInt(q.dequeue());
+    PrintInt(q.dequeue());
+    PrintInt(q.isEmpty());
+}

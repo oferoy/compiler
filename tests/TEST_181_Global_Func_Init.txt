@@ -1,0 +1,13 @@
+int triple(int x)
+{
+    return x * 3;
+}
+
+int a := triple(5);
+int b := triple(a);
+
+void main()
+{
+    PrintInt(a);
+    PrintInt(b);
+}

@@ -1,0 +1,22 @@
+int findFirst(int target)
+{
+    int i := 0;
+    while (i < 100)
+    {
+        if (i * i > target)
+        {
+            return i;
+        }
+        i := i + 1;
+    }
+    return 0 - 1;
+}
+
+void main()
+{
+    PrintInt(findFirst(0));
+    PrintInt(findFirst(1));
+    PrintInt(findFirst(10));
+    PrintInt(findFirst(100));
+    PrintInt(findFirst(1000));
+}

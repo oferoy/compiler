@@ -1,0 +1,21 @@
+int foo(int x, int y, int z)
+{
+    int a := x + y;
+    int b := y + z;
+    int c := a * b;
+    int d := c - a;
+    int e := d + b;
+    int f := e * 2;
+    int g := f - c;
+    int h := g + d;
+    int i := h / 3;
+    int j := i + a + b + c;
+    return j;
+}
+
+void main()
+{
+    PrintInt(foo(2, 3, 4));
+    PrintInt(foo(1, 1, 1));
+    PrintInt(foo(10, 5, 3));
+}

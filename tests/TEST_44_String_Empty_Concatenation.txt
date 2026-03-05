@@ -1,0 +1,14 @@
+void main()
+{
+    string empty := "";
+    string hello := "Hello";
+    
+    string result1 := empty + hello;
+    string result2 := hello + empty;
+    string result3 := empty + empty;
+    
+    PrintString(result1);
+    PrintString(result2);
+    PrintInt(result1 = hello);
+    PrintInt(result3 = empty);
+}

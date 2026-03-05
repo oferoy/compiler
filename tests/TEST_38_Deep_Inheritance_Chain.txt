@@ -1,0 +1,33 @@
+class A
+{
+    int a := 1;
+    int getA() { return a; }
+}
+
+class B extends A
+{
+    int b := 2;
+    int getB() { return b; }
+}
+
+class C extends B
+{
+    int c := 3;
+    int getC() { return c; }
+}
+
+class D extends C
+{
+    int d := 4;
+    int getD() { return d; }
+}
+
+void main()
+{
+    D obj := new D;
+    PrintInt(obj.getA());
+    PrintInt(obj.getB());
+    PrintInt(obj.getC());
+    PrintInt(obj.getD());
+    PrintInt(obj.a + obj.b + obj.c + obj.d);
+}

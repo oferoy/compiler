@@ -1,0 +1,10 @@
+string greeting := "hello";
+string world := "world";
+string msg := greeting + world;
+
+void main()
+{
+    PrintString(msg);
+    PrintString(greeting);
+    PrintString(world);
+}

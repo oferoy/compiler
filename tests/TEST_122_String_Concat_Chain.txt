@@ -1,0 +1,12 @@
+void main()
+{
+    string a := "He";
+    string b := "ll";
+    string c := "o";
+    string d := a + b + c;
+    PrintString(d);
+    string e := d + d;
+    PrintString(e);
+    string f := "" + a + "" + b + "" + c + "";
+    PrintString(f);
+}

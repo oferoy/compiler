@@ -1,0 +1,11 @@
+void main()
+{
+    int zero := 0;
+    
+    PrintInt(zero + 0);
+    PrintInt(zero - 0);
+    PrintInt(zero * 100);
+    PrintInt(100 * zero);
+    PrintInt(0 / 5);
+    PrintInt(zero + zero);
+}

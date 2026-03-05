@@ -1,0 +1,27 @@
+array IntArr = int[];
+
+int sum(IntArr arr, int len)
+{
+    int s := 0;
+    int i := 0;
+    while (i < len)
+    {
+        s := s + arr[i];
+        i := i + 1;
+    }
+    return s;
+}
+
+void main()
+{
+    IntArr a := new int[6];
+    a[0] := 10;
+    a[1] := 20;
+    a[2] := 30;
+    a[3] := 40;
+    a[4] := 50;
+    a[5] := 60;
+    int s := sum(a, 6);
+    PrintInt(s);
+    PrintInt(s / 6);
+}

@@ -2,6 +2,7 @@ package ast;
 
 import types.*;
 import temp.*;
+import ir.*;
 
 public class AstStmtList extends AstNode
 {
@@ -21,12 +22,6 @@ public class AstStmtList extends AstNode
 		/******************************/
 		serialNumber = AstNodeSerialNumber.getFresh();
 
-		/***************************************/
-		/* PRINT CORRESPONDING DERIVATION RULE */
-		/***************************************/
-		if (tail != null) System.out.print("====================== stmts -> stmt stmts\n");
-		if (tail == null) System.out.print("====================== stmts -> stmt      \n");
-
 		/*******************************/
 		/* COPY INPUT DATA MEMBERS ... */
 		/*******************************/
@@ -40,7 +35,7 @@ public class AstStmtList extends AstNode
 	public void printMe()
 	{
 		/**************************************/
-		/* AST NODE TYPE = AST STATEMENT LIST */
+		/* AST NODE Type = AST STATEMENT LIST */
 		/**************************************/
 		System.out.print("AST NODE STMT LIST\n");
 
@@ -71,12 +66,33 @@ public class AstStmtList extends AstNode
 		
 		return null;
 	}
-
+	/*****************/
+	/* IR ME         */
+	/*****************/
 	public Temp irMe()
 	{
-		if (head != null) head.irMe();
-		if (tail != null) tail.irMe();
+		/**************************************/
+		/* [1] Generate IR for the head       */
+		/*     statement                      */
+		/**************************************/
+		if (head != null)
+		{
+			head.irMe();
+		}
 
+		/**************************************/
+		/* [2] Recursively generate IR for    */
+		/*     the tail (rest of statements)  */
+		/**************************************/
+		if (tail != null)
+		{
+			tail.irMe();
+		}
+
+		/**************************************/
+		/* [3] Return null (statement lists   */
+		/*     don't return values)           */
+		/**************************************/
 		return null;
 	}
 }

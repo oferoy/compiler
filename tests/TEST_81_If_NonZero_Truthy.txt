@@ -1,0 +1,7 @@
+void main()
+{
+    if (1) { PrintInt(1); }
+    if (0 - 1) { PrintInt(2); }
+    if (42) { PrintInt(3); }
+    if (0) { PrintInt(4); }
+}

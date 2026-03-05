@@ -1,0 +1,10 @@
+int g := 0;
+int side1(){ g := g + 1; return g; }
+int side2(){ g := g * 10; return g; }
+
+void main()
+{
+    int x := side1() + side2();
+    PrintInt(x);
+    PrintInt(g);
+}

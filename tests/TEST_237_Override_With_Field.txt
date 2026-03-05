@@ -1,0 +1,43 @@
+class Expr
+{
+    int eval() { return 0; }
+}
+
+class Literal extends Expr
+{
+    int val;
+    int eval() { return val; }
+}
+
+class Add extends Expr
+{
+    Expr left;
+    Expr right;
+    int eval() { return left.eval() + right.eval(); }
+}
+
+class Mul extends Expr
+{
+    Expr left;
+    Expr right;
+    int eval() { return left.eval() * right.eval(); }
+}
+
+void main()
+{
+    Literal a := new Literal;
+    a.val := 3;
+    Literal b := new Literal;
+    b.val := 4;
+    Literal c := new Literal;
+    c.val := 5;
+    Add sum := new Add;
+    sum.left := a;
+    sum.right := b;
+    Mul prod := new Mul;
+    prod.left := sum;
+    prod.right := c;
+    PrintInt(prod.eval());
+    PrintInt(sum.eval());
+    PrintInt(a.eval());
+}

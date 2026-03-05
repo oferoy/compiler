@@ -1,0 +1,21 @@
+int global := 0;
+
+int f1()
+{
+    global := global + 10;
+    return global;
+}
+
+int f2()
+{
+    global := global * 2;
+    return global;
+}
+
+void main()
+{
+    global := 5;
+    int result := f1() + f2();
+    PrintInt(result);
+    PrintInt(global);
+}

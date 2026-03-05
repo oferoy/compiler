@@ -1,0 +1,12 @@
+int x := 1;
+int y := x + x;
+int z := y * y;
+int w := z + x + y;
+
+void main()
+{
+    PrintInt(x);
+    PrintInt(y);
+    PrintInt(z);
+    PrintInt(w);
+}

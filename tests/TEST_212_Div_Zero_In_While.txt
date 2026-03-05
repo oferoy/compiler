@@ -1,0 +1,11 @@
+void main()
+{
+    int i := 5;
+    while (i > 0)
+    {
+        PrintInt(i);
+        int r := 100 / (i - 3);
+        PrintInt(r);
+        i := i - 1;
+    }
+}

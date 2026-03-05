@@ -1,0 +1,53 @@
+array IntArr = int[];
+
+int getElem(IntArr mat, int cols, int row, int col)
+{
+    return mat[row * cols + col];
+}
+
+void setElem(IntArr mat, int cols, int row, int col, int val)
+{
+    mat[row * cols + col] := val;
+}
+
+void matMul(IntArr a, IntArr b, IntArr c, int n)
+{
+    int i := 0;
+    while (i < n)
+    {
+        int j := 0;
+        while (j < n)
+        {
+            int sum := 0;
+            int k := 0;
+            while (k < n)
+            {
+                sum := sum + getElem(a, n, i, k) * getElem(b, n, k, j);
+                k := k + 1;
+            }
+            setElem(c, n, i, j, sum);
+            j := j + 1;
+        }
+        i := i + 1;
+    }
+}
+
+void main()
+{
+    IntArr a := new int[4];
+    IntArr b := new int[4];
+    IntArr c := new int[4];
+    setElem(a, 2, 0, 0, 1);
+    setElem(a, 2, 0, 1, 2);
+    setElem(a, 2, 1, 0, 3);
+    setElem(a, 2, 1, 1, 4);
+    setElem(b, 2, 0, 0, 5);
+    setElem(b, 2, 0, 1, 6);
+    setElem(b, 2, 1, 0, 7);
+    setElem(b, 2, 1, 1, 8);
+    matMul(a, b, c, 2);
+    PrintInt(getElem(c, 2, 0, 0));
+    PrintInt(getElem(c, 2, 0, 1));
+    PrintInt(getElem(c, 2, 1, 0));
+    PrintInt(getElem(c, 2, 1, 1));
+}

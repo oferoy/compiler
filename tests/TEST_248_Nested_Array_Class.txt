@@ -1,0 +1,61 @@
+array IntArr = int[];
+
+class Matrix
+{
+    IntArr data;
+    int rows;
+    int cols;
+
+    void init(int r, int c)
+    {
+        rows := r;
+        cols := c;
+        data := new int[r * c];
+    }
+
+    void set(int r, int c, int val)
+    {
+        data[r * cols + c] := val;
+    }
+
+    int get(int r, int c)
+    {
+        return data[r * cols + c];
+    }
+
+    int trace()
+    {
+        int sum := 0;
+        int i := 0;
+        while (i < rows)
+        {
+            if (i < cols)
+            {
+                sum := sum + data[i * cols + i];
+            }
+            i := i + 1;
+        }
+        return sum;
+    }
+}
+
+void main()
+{
+    Matrix m := new Matrix;
+    m.init(3, 3);
+    m.set(0, 0, 1);
+    m.set(0, 1, 2);
+    m.set(0, 2, 3);
+    m.set(1, 0, 4);
+    m.set(1, 1, 5);
+    m.set(1, 2, 6);
+    m.set(2, 0, 7);
+    m.set(2, 1, 8);
+    m.set(2, 2, 9);
+    PrintInt(m.get(0, 0));
+    PrintInt(m.get(1, 1));
+    PrintInt(m.get(2, 2));
+    PrintInt(m.trace());
+    PrintInt(m.get(1, 0));
+    PrintInt(m.get(0, 2));
+}

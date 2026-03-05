@@ -1,0 +1,20 @@
+class Item { int val; }
+array ItemArr = Item[];
+
+void main()
+{
+    ItemArr items := new Item[3];
+    int i := 0;
+    while (i < 3)
+    {
+        items[i] := new Item;
+        items[i].val := (i + 1) * 10;
+        i := i + 1;
+    }
+    i := 0;
+    while (i < 3)
+    {
+        PrintInt(items[i].val);
+        i := i + 1;
+    }
+}

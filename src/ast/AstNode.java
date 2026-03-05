@@ -1,29 +1,21 @@
 package ast;
 
-import temp.*;
+import types.Type;
 
-public abstract class AstNode
-{
-	/*******************************************/
-	/* The serial number is for debug purposes */
-	/* In particular, it can help in creating  */
-	/* a graphviz dot format of the AST ...    */
-	/*******************************************/
-	public int serialNumber;
-	
-	/***********************************************/
-	/* The default message for an unknown AST node */
-	/***********************************************/
-	public void printMe()
-	{
-		System.out.print("AST NODE UNKNOWN\n");
-	}
+public abstract class AstNode {
 
-	/*****************************************/
-	/* The default IR action for an AST node */
-	/*****************************************/
-	public Temp irMe()
-	{
-		return null;
-	}
+    public int serialNumber;
+
+    // MUST EXIST — accessed by all semantics
+    public int lineNumber;
+
+    public void printMe() {}
+
+    public Type semantMe() throws Exception {
+        return null;
+    }
+
+    public static void error(int line, String msg) {
+        throw new RuntimeException("ERROR(" + line + ")");
+    }
 }

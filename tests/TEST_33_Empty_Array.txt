@@ -1,0 +1,7 @@
+array IntArray = int[];
+
+void main()
+{
+    IntArray arr := new int[0];
+    PrintInt(5);
+}

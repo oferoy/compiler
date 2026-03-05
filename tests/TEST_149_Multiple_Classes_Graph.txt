@@ -1,0 +1,51 @@
+class Edge {
+    int dest;
+    int weight;
+}
+
+array EdgeArr = Edge[];
+
+class Vertex {
+    int id;
+    EdgeArr edges := nil;
+    int numEdges := 0;
+    void addEdge(int d, int w)
+    {
+        edges[numEdges] := new Edge;
+        edges[numEdges].dest := d;
+        edges[numEdges].weight := w;
+        numEdges := numEdges + 1;
+    }
+}
+
+array VertexArr = Vertex[];
+
+void main()
+{
+    VertexArr graph := new Vertex[3];
+    int i := 0;
+    while (i < 3)
+    {
+        graph[i] := new Vertex;
+        graph[i].id := i;
+        graph[i].edges := new Edge[5];
+        i := i + 1;
+    }
+    graph[0].addEdge(1, 10);
+    graph[0].addEdge(2, 20);
+    graph[1].addEdge(2, 5);
+    i := 0;
+    while (i < 3)
+    {
+        PrintInt(graph[i].id);
+        PrintInt(graph[i].numEdges);
+        int j := 0;
+        while (j < graph[i].numEdges)
+        {
+            PrintInt(graph[i].edges[j].dest);
+            PrintInt(graph[i].edges[j].weight);
+            j := j + 1;
+        }
+        i := i + 1;
+    }
+}

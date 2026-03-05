@@ -1,0 +1,8 @@
+void main()
+{
+    int a := 0 - 32767;
+    int b := 0 - 32767;
+    PrintInt(a + b);
+    PrintInt(a - 1);
+    PrintInt(a * 2);
+}

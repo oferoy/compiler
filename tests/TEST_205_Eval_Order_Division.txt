@@ -1,0 +1,21 @@
+int g := 100;
+
+int halfG()
+{
+    g := g / 2;
+    return g;
+}
+
+int addTen()
+{
+    g := g + 10;
+    return g;
+}
+
+void main()
+{
+    g := 100;
+    int r := halfG() / addTen();
+    PrintInt(r);
+    PrintInt(g);
+}

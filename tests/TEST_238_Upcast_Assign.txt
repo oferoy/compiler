@@ -1,0 +1,32 @@
+class Base
+{
+    int x := 1;
+    int getX() { return x; }
+}
+
+class Derived extends Base
+{
+    int y := 2;
+    int getX() { return x + y; }
+    int getY() { return y; }
+}
+
+void printBase(Base b)
+{
+    PrintInt(b.getX());
+}
+
+void main()
+{
+    Derived d := new Derived;
+    d.x := 10;
+    d.y := 20;
+    Base b := d;
+    PrintInt(b.getX());
+    printBase(d);
+    PrintInt(d.getX());
+    PrintInt(d.getY());
+    b.x := 99;
+    PrintInt(d.x);
+    PrintInt(d.getX());
+}

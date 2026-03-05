@@ -1,0 +1,6 @@
+void main()
+{
+    string a := "ab";
+    string b := "a" + "b";
+    PrintInt(a = b);
+}

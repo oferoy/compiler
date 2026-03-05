@@ -1,0 +1,21 @@
+int g := 0;
+
+int incG()
+{
+    g := g + 5;
+    return g;
+}
+
+int doubleG()
+{
+    g := g * 2;
+    return g;
+}
+
+void main()
+{
+    g := 1;
+    int r := incG() * doubleG();
+    PrintInt(r);
+    PrintInt(g);
+}

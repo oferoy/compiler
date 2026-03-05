@@ -1,0 +1,25 @@
+array IntArr = int[];
+
+void swap(IntArr arr, int i, int j)
+{
+    int tmp := arr[i];
+    arr[i] := arr[j];
+    arr[j] := tmp;
+}
+
+void main()
+{
+    IntArr a := new int[4];
+    a[0] := 40;
+    a[1] := 30;
+    a[2] := 20;
+    a[3] := 10;
+    swap(a, 0, 3);
+    swap(a, 1, 2);
+    int i := 0;
+    while (i < 4)
+    {
+        PrintInt(a[i]);
+        i := i + 1;
+    }
+}

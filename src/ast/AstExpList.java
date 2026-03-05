@@ -1,60 +1,45 @@
 package ast;
 
-import temp.*;
+import types.*;
 
 public class AstExpList extends AstNode
 {
-	/****************/
-	/* DATA MEMBERS */
-	/****************/
-	public AstExp head;
-	public AstExpList tail;
+    public AstExp head;
+    public AstExpList tail;
 
-	/******************/
-	/* CONSTRUCTOR(S) */
-	/******************/
-	public AstExpList(AstExp head, AstExpList tail)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		serialNumber = AstNodeSerialNumber.getFresh();
+    public AstExpList(AstExp head, AstExpList tail)
+    {
+        serialNumber = AstNodeSerialNumber.getFresh();
+        this.head = head;
+        this.tail = tail;
+    }
 
-		this.head = head;
-		this.tail = tail;
-	}
-	/*******************************************************/
-	/* The printing message for a expression list AST node */
-	/*******************************************************/
-	public void printMe()
-	{
-		/********************************/
-		/* AST NODE TYPE = AST EXP LIST */
-		/********************************/
-		System.out.print("AST NODE EXP LIST\n");
+    @Override
+    public void printMe()
+    {
+        System.out.print("AST NODE EXP LIST\n");
 
-		/*************************************/
-		/* RECURSIVELY PRINT HEAD + TAIL ... */
-		/*************************************/
-		if (head != null) head.printMe();
-		if (tail != null) tail.printMe();
+        if (head != null) head.printMe();
+        if (tail != null) tail.printMe();
 
-		/**********************************/
-		/* PRINT to AST GRAPHVIZ DOT file */
-		/**********************************/
-		AstGraphviz.getInstance().logNode(
-				serialNumber,
-			"EXP\nLIST\n");
-		
-		/****************************************/
-		/* PRINT Edges to AST GRAPHVIZ DOT file */
-		/****************************************/
-		if (head != null) AstGraphviz.getInstance().logEdge(serialNumber,head.serialNumber);
-		if (tail != null) AstGraphviz.getInstance().logEdge(serialNumber,tail.serialNumber);
-	}
+        AstGraphviz.getInstance().logNode(
+                serialNumber,
+                "EXP\nLIST");
 
-	public Temp irMe()
-	{
-		return head.irMe();
-	}
+        if (head != null)
+            AstGraphviz.getInstance().logEdge(serialNumber, head.serialNumber);
+
+        if (tail != null)
+            AstGraphviz.getInstance().logEdge(serialNumber, tail.serialNumber);
+    }
+
+    @Override
+    public Type semantMe()
+    {
+        // Semant each expression in the list
+        if (head != null) head.semantMe();
+        if (tail != null) tail.semantMe();
+
+        return null; // lists don't produce a type
+    }
 }

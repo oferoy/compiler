@@ -1,0 +1,26 @@
+int gcd(int a, int b)
+{
+    while (b = 0 = 0)
+    {
+        int temp := b;
+        b := a - (a / b) * b;
+        a := temp;
+    }
+    return a;
+}
+
+int lcm(int a, int b)
+{
+    return (a / gcd(a, b)) * b;
+}
+
+void main()
+{
+    PrintInt(gcd(12, 8));
+    PrintInt(gcd(100, 75));
+    PrintInt(gcd(17, 13));
+    PrintInt(gcd(48, 36));
+    PrintInt(lcm(4, 6));
+    PrintInt(lcm(3, 7));
+    PrintInt(lcm(12, 8));
+}

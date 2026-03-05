@@ -1,0 +1,16 @@
+void main()
+{
+    int i := 1;
+    int total := 0;
+    while (i < 6)
+    {
+        int j := 0;
+        while (j < i)
+        {
+            total := total + 1;
+            j := j + 1;
+        }
+        PrintInt(total);
+        i := i + 1;
+    }
+}

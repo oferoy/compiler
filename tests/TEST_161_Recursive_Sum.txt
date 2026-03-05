@@ -1,0 +1,17 @@
+int sumTo(int n)
+{
+    if (n < 1)
+    {
+        return 0;
+    }
+    return n + sumTo(n - 1);
+}
+
+void main()
+{
+    PrintInt(sumTo(0));
+    PrintInt(sumTo(1));
+    PrintInt(sumTo(10));
+    PrintInt(sumTo(100));
+    PrintInt(sumTo(255));
+}

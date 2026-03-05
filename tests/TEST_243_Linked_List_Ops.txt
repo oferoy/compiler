@@ -1,0 +1,75 @@
+class Node
+{
+    int data;
+    Node next := nil;
+}
+
+Node prepend(Node head, int val)
+{
+    Node n := new Node;
+    n.data := val;
+    n.next := head;
+    return n;
+}
+
+int length(Node head)
+{
+    int count := 0;
+    Node cur := head;
+    while (cur = nil = 0)
+    {
+        count := count + 1;
+        cur := cur.next;
+    }
+    return count;
+}
+
+int sumList(Node head)
+{
+    int total := 0;
+    Node cur := head;
+    while (cur = nil = 0)
+    {
+        total := total + cur.data;
+        cur := cur.next;
+    }
+    return total;
+}
+
+Node reverse(Node head)
+{
+    Node prev := nil;
+    Node cur := head;
+    while (cur = nil = 0)
+    {
+        Node nxt := cur.next;
+        cur.next := prev;
+        prev := cur;
+        cur := nxt;
+    }
+    return prev;
+}
+
+void printList(Node head)
+{
+    Node cur := head;
+    while (cur = nil = 0)
+    {
+        PrintInt(cur.data);
+        cur := cur.next;
+    }
+}
+
+void main()
+{
+    Node list := nil;
+    list := prepend(list, 5);
+    list := prepend(list, 10);
+    list := prepend(list, 15);
+    list := prepend(list, 20);
+    PrintInt(length(list));
+    PrintInt(sumList(list));
+    printList(list);
+    list := reverse(list);
+    printList(list);
+}

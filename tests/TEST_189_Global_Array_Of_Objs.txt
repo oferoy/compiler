@@ -1,0 +1,38 @@
+class Item
+{
+    int value;
+    string name := "none";
+}
+
+array ItemArr = Item[];
+
+ItemArr inventory := new Item[3];
+
+void setup()
+{
+    int i := 0;
+    while (i < 3)
+    {
+        inventory[i] := new Item;
+        inventory[i].value := (i + 1) * 100;
+        i := i + 1;
+    }
+    inventory[0].name := "sword";
+    inventory[1].name := "shield";
+    inventory[2].name := "potion";
+}
+
+void main()
+{
+    setup();
+    int i := 0;
+    int total := 0;
+    while (i < 3)
+    {
+        PrintString(inventory[i].name);
+        PrintInt(inventory[i].value);
+        total := total + inventory[i].value;
+        i := i + 1;
+    }
+    PrintInt(total);
+}

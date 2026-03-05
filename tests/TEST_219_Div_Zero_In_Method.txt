@@ -1,0 +1,14 @@
+class Calculator
+{
+    int divide(int a, int b)
+    {
+        return a / b;
+    }
+}
+
+void main()
+{
+    Calculator c := new Calculator;
+    PrintInt(c.divide(10, 2));
+    PrintInt(c.divide(100, 0));
+}

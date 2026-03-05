@@ -1,0 +1,7 @@
+class Foo { int x; }
+
+void main()
+{
+    Foo f := nil;
+    int x := f.x;
+}

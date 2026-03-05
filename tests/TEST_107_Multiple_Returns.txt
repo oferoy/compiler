@@ -1,0 +1,12 @@
+int abs(int x)
+{
+    if (x < 0) { return 0 - x; }
+    return x;
+}
+
+void main()
+{
+    PrintInt(abs(5));
+    PrintInt(abs(0 - 3));
+    PrintInt(abs(0));
+}

@@ -1,0 +1,11 @@
+class Box
+{
+    int val;
+}
+
+void main()
+{
+    PrintString("before");
+    Box b := nil;
+    b.val := 42;
+}

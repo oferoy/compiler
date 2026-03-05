@@ -1,0 +1,23 @@
+void main()
+{
+    int x := 100;
+    while (x < 0)
+    {
+        x := x + 1;
+        PrintInt(999);
+    }
+    PrintInt(x);
+
+    int y := 0;
+    while (0)
+    {
+        y := 1;
+    }
+    PrintInt(y);
+
+    while (1)
+    {
+        PrintInt(42);
+        return;
+    }
+}

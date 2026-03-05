@@ -1,0 +1,32 @@
+array IntArr = int[];
+
+void copyArr(IntArr src, IntArr dst, int len)
+{
+    int i := 0;
+    while (i < len)
+    {
+        dst[i] := src[i];
+        i := i + 1;
+    }
+}
+
+void main()
+{
+    IntArr a := new int[5];
+    a[0] := 10;
+    a[1] := 20;
+    a[2] := 30;
+    a[3] := 40;
+    a[4] := 50;
+    IntArr b := new int[5];
+    copyArr(a, b, 5);
+    int i := 0;
+    while (i < 5)
+    {
+        PrintInt(b[i]);
+        i := i + 1;
+    }
+    b[0] := 999;
+    PrintInt(a[0]);
+    PrintInt(b[0]);
+}

@@ -1,0 +1,19 @@
+void greet(string name, string msg)
+{
+    PrintString(msg);
+    PrintString(name);
+}
+
+string buildName(string first, string last)
+{
+    return first + last;
+}
+
+void main()
+{
+    greet("Alice", "Hello");
+    greet("Bob", "Hi");
+    string full := buildName("John", "Doe");
+    PrintString(full);
+    greet(full, "Welcome");
+}

@@ -1,0 +1,19 @@
+int power(int base, int exp)
+{
+    if (exp = 0)
+    {
+        return 1;
+    }
+    return base * power(base, exp - 1);
+}
+
+void main()
+{
+    PrintInt(power(2, 0));
+    PrintInt(power(2, 1));
+    PrintInt(power(2, 10));
+    PrintInt(power(3, 5));
+    PrintInt(power(2, 14));
+    PrintInt(power(2, 15));
+    PrintInt(power(5, 3));
+}

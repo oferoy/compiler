@@ -1,0 +1,16 @@
+string greeting := "hello";
+string target := "world";
+
+string combine()
+{
+    return greeting + target;
+}
+
+void main()
+{
+    PrintString(greeting);
+    PrintString(target);
+    PrintString(combine());
+    greeting := "goodbye";
+    PrintString(combine());
+}

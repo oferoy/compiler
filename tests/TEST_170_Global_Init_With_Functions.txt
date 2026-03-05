@@ -1,0 +1,21 @@
+int computeA()
+{
+    return 7 * 3;
+}
+
+int computeB()
+{
+    return 100 + 23;
+}
+
+int ga := computeA();
+int gb := computeB();
+int gc := 42;
+
+void main()
+{
+    PrintInt(ga);
+    PrintInt(gb);
+    PrintInt(gc);
+    PrintInt(ga + gb + gc);
+}

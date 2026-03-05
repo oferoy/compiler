@@ -1,0 +1,11 @@
+void main()
+{
+    PrintInt(0 / 5);
+    PrintInt(10 / 3);
+    PrintInt(-10 / 3);
+    PrintInt(10 / -3);
+    PrintInt(-10 / -3);
+    PrintInt(32767 / 1);
+    PrintInt(32767 / 32767);
+    PrintInt(1 / 2);
+}

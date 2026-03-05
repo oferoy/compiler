@@ -1,0 +1,27 @@
+class Base {
+    int foo() { return 1; }
+    int bar() { return 2; }
+    int baz() { return 3; }
+}
+class Mid extends Base {
+    int bar() { return 20; }
+}
+class Leaf extends Mid {
+    int baz() { return 300; }
+}
+
+void main()
+{
+    Leaf obj := new Leaf;
+    PrintInt(obj.foo());
+    PrintInt(obj.bar());
+    PrintInt(obj.baz());
+    Base bobj := obj;
+    PrintInt(bobj.foo());
+    PrintInt(bobj.bar());
+    PrintInt(bobj.baz());
+    Mid mobj := obj;
+    PrintInt(mobj.foo());
+    PrintInt(mobj.bar());
+    PrintInt(mobj.baz());
+}
